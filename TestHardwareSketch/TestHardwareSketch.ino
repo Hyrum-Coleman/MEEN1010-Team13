@@ -93,9 +93,13 @@ const int motorPower = 255;
 bool motorOn = 0; // off is 0 and on is 1
 bool motorRight = 0; // off is 0 and on is 1
 
-// print sensor value variables
+// print sensor value variable
 
 int irSensorValue = 0;
+
+// get encoder boolean variable
+
+bool black = 1;
 
 /********************
  ** Setup Function **
@@ -197,12 +201,24 @@ void loop(void) {
       //do something over and over
       TestMotor();
       break;
-     case 'e':
+    case 'e':
 
       //do something once
       if (newUserInput == 1)
       {
         Serial.println("Press the left and right buttons to test the motor and sensor");
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestMotor();
+      break;
+    case 'f':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println("Press the left and right buttons to test the motor and encoder");
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -254,6 +270,19 @@ void TurnMotorOff(void)
     analogWrite(motorPowerPin, 0);
     motorOn = 0;
   }
+}
+
+bool GetEncoderBoolean(void)
+{
+  int lowThreshold = 80;
+  int highThreshold = 300;
+  int irSensorValue = analogRead(irSensorPin);
+  if ((black == 1) && (irSensorValue < lowThreshold))
+    return 0;
+  else if ((black == 0) && (irSensorValue > highThreshold))
+    return 1;
+  else
+    return black;
 }
 
 // create custom headers as necessary to clearly organize your sketch

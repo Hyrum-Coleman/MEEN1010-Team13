@@ -45,7 +45,7 @@ void TestMotor(void)
         PrintSensorValue();
         break;
       case 'f':
-        //nothing yet :troll:
+        PrintBlackWhite();
         break;
       case 'g':
         //nothing yet :troll:
@@ -77,11 +77,23 @@ void PrintSensorValue(void)
 {
   irSensorValue = analogRead(irSensorPin);
   timeSinceLastPrint = millis() - printTime;
-  if(timeSinceLastPrint > 50)
+  if (timeSinceLastPrint > 50)
   {
     printTime = millis();
     char printArray[1000];
     sprintf(printArray, "The sensor value is %d\n", irSensorValue);
     Serial.print(printArray);
+  }
+}
+void PrintBlackWhite(void)
+{
+  bool prevBlack = black;
+  black = GetEncoderBoolean();
+  if (black != prevBlack)
+  {
+    if (black == 1)
+      Serial.println("Over black");
+    else
+      Serial.println("Over White");
   }
 }
