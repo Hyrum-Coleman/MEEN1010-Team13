@@ -1,4 +1,5 @@
-void DebugPrint(String debugText, int debugVal) {
+void DebugPrint(String debugText, int debugVal)
+{
   // *** This function requires the following GLOBAL variables: ***
   //  unsigned long debugPrintTime = 0;
   //  unsigned long debugTimeSinceLastPrint = 0;
@@ -10,7 +11,8 @@ void DebugPrint(String debugText, int debugVal) {
 
   debugTimeSinceLastPrint = millis() - debugPrintTime;
 
-  if (debugTimeSinceLastPrint > debugPrintDelay) {
+  if (debugTimeSinceLastPrint > debugPrintDelay)
+  {
     debugPrintTime = millis();
     Serial.print(debugText);
     Serial.println(debugVal);
@@ -19,7 +21,8 @@ void DebugPrint(String debugText, int debugVal) {
 } // end function
 
 
-void DebugBlink(int debugBlinkDelay) {
+void DebugBlink(int debugBlinkDelay)
+{
   // *** This function requires the following GLOBAL variables: ***
   //  const int debugLedPin = 13;   // onboard LED
   //  unsigned long debugBlinkTime = 0;
@@ -34,7 +37,8 @@ void DebugBlink(int debugBlinkDelay) {
 
   debugTimeSinceLastBlink = millis() - debugBlinkTime;
 
-  if (debugTimeSinceLastBlink > debugBlinkDelay) {
+  if (debugTimeSinceLastBlink > debugBlinkDelay)
+  {
     debugBlinkTime = millis();
     debugLedHiLo = 1 - debugLedHiLo;
     digitalWrite(debugLedPin, debugLedHiLo);

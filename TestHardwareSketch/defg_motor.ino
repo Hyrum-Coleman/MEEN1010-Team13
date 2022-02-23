@@ -91,9 +91,13 @@ void PrintBlackWhite(void)
   if (black != prevBlack)
   {
     if (black == 1)
+    {
       Serial.println("Over black");
+    }
     else
+    {
       Serial.println("Over white");
+    }
 
   }
 }

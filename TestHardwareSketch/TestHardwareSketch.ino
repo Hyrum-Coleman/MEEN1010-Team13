@@ -278,11 +278,17 @@ bool GetEncoderBoolean(void)
   int highThreshold = 300;
   int irSensorValue = analogRead(irSensorPin);
   if ((black == 1) && (irSensorValue < lowThreshold))
+  {
     return 0;
+  }
   else if ((black == 0) && (irSensorValue > highThreshold))
+  {
     return 1;
+  }
   else
+  {
     return black;
+  }
 }
 
 // create custom headers as necessary to clearly organize your sketch
