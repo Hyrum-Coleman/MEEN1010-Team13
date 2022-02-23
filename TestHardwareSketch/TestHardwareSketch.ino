@@ -135,13 +135,12 @@ void loop(void) {
     //      //do something once
     //      if (newUserInput == 1)
     //      {
-    //        Serial.println("prints once");
+    //       // CODE HERE (Once code)
     //        newUserInput = 0; //should not delete under any circumstances
     //
     //      }
     //      //do something over and over
-    //      Serial.println("prints over and over");
-    //      delay(500);
+    //      // CODE HERE (Over and over code)
     //      break;
 
     case 'a':
@@ -178,7 +177,18 @@ void loop(void) {
       //do something over and over
       TestButtons();
       break;
-
+        case 'd':
+    
+          //do something once
+          if (newUserInput == 1)
+          {
+            Serial.println("Press the left and right buttons to test the motor.");
+            newUserInput = 0; //should not delete under any circumstances
+    
+          }
+          //do something over and over
+          TestMotor();
+          break;
     case 'z':
       //do something once
       if (newUserInput == 1)
