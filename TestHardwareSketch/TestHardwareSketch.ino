@@ -2,7 +2,7 @@
   Author Names: Hyrum Coleman, Will Connors
   Lab section: 003
   Team number: 13
-  Date: 2/15/22
+  Date: 2/23/22
   Sketch Description:
 
   Button Usage: Up/Down    -
@@ -15,6 +15,9 @@
               11 digital          Left Switch
               12 digital          Right Switch
               A7 analog           Built in buttons
+              04 digital          Motor Direction
+              05 digital          Motor Power
+              A5 analog           IR Sensor
 *******************************************************************/
 
 /****************************
@@ -31,6 +34,7 @@ const int rightSwitchPin = 12;
 const int buttonPin = A7;
 const int motorPowerPin = 5;
 const int motorDirectionPin = 4;
+const int irSensorPin = A5;
 // *** Create Servo Objects ***
 
 // *** Declare & Initialize Program Variables ***
@@ -88,6 +92,10 @@ int debugLedHiLo = 0;
 const int motorPower = 255;
 bool motorOn = 0; // off is 0 and on is 1
 bool motorRight = 0; // off is 0 and on is 1
+
+// print sensor value variables
+
+int irSensorValue = 0;
 
 /********************
  ** Setup Function **
@@ -182,7 +190,19 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Press the left and right buttons to test the motor.");
+        Serial.println("Press the left and right buttons to test the motor");
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestMotor();
+      break;
+     case 'e':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println("Press the left and right buttons to test the motor and sensor");
         newUserInput = 0; //should not delete under any circumstances
 
       }

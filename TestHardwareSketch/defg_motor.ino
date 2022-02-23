@@ -42,7 +42,7 @@ void TestMotor(void)
         PrintLeftRight();
         break;
       case 'e':
-        //nothing yet :troll:
+        PrintSensorValue();
         break;
       case 'f':
         //nothing yet :troll:
@@ -71,5 +71,17 @@ void PrintLeftRight(void)
     {
       Serial.println("LEFT");
     }
+  }
+}
+void PrintSensorValue(void)
+{
+  irSensorValue = analogRead(irSensorPin);
+  timeSinceLastPrint = millis() - printTime;
+  if(timeSinceLastPrint > 50)
+  {
+    printTime = millis();
+    char printArray[1000];
+    sprintf(printArray, "The sensor value is %d\n", irSensorValue);
+    Serial.print(printArray);
   }
 }
