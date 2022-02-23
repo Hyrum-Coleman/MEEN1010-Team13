@@ -68,6 +68,18 @@ int buttonNumber = 0;
 unsigned long cibn = 0;
 int buttonPressed = 0;
 
+// debug print function variables
+
+unsigned long debugPrintTime = 0;
+unsigned long debugTimeSinceLastPrint = 0;
+int debugPrintDelay = 200;  // you can choose this time
+
+// debug blink function variables
+
+const int debugLedPin = 13;   // onboard LED
+unsigned long debugBlinkTime = 0;
+unsigned long debugTimeSinceLastBlink = 0;
+int debugLedHiLo = 0;
 
 /********************
  ** Setup Function **
