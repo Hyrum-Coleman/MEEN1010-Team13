@@ -80,9 +80,8 @@ void PrintSensorValue(void)
   if (timeSinceLastPrint > 50)
   {
     printTime = millis();
-    char printArray[1000];
-    sprintf(printArray, "The sensor value is %d\n", irSensorValue);
-    Serial.print(printArray);
+    Serial.print("The sensor value is ");
+    Serial.println(irSensorValue);
   }
 }
 void PrintBlackWhite(void)
@@ -94,7 +93,7 @@ void PrintBlackWhite(void)
     if (black == 1)
       Serial.println("Over black");
     else
-      Serial.println("Over White");
+      Serial.println("Over white");
 
   }
 }
