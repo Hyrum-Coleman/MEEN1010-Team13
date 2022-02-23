@@ -29,6 +29,8 @@ const int ledPin = 13 ;
 const int leftSwitchPin = 11;
 const int rightSwitchPin = 12;
 const int buttonPin = A7;
+const int motorPowerPin = 5;
+const int motorDirectionPin = 4;
 // *** Create Servo Objects ***
 
 // *** Declare & Initialize Program Variables ***
@@ -81,6 +83,12 @@ unsigned long debugBlinkTime = 0;
 unsigned long debugTimeSinceLastBlink = 0;
 int debugLedHiLo = 0;
 
+// motor test variables
+
+const int motorPower = 255;
+bool motorOn = 0; // off is 0 and on is 1
+bool motorRight = 0; // off is 0 and on is 1
+
 /********************
  ** Setup Function **
  ********************/
@@ -93,6 +101,9 @@ void setup(void) {
   pinMode(ledPin, OUTPUT);
   pinMode(leftSwitchPin, INPUT_PULLUP);
   pinMode(rightSwitchPin, INPUT_PULLUP);
+  pinMode(motorPowerPin, OUTPUT);
+  pinMode(motorDirectionPin, OUTPUT);
+  
   // *** Take Initial Readings ***
 
   // *** Move Hardware to Desired Initial Positions ***
@@ -195,5 +206,25 @@ void loop(void) {
 /****************************
  ** User-Defined Functions **
  ****************************/
+
+void TurnMotorOn(void)
+{
+  if(motorOn == 0)
+  {
+    digitalWrite(motorDirectionPin, motorRight);
+    analogWrite(motorPowerPin, motorPower);
+    motorOn = 1;
+  }
+}
+
+void TurnMotorOff(void)
+{
+  if(motorOn == 1)
+  {
+    analogWrite(motorPowerPin, 0);
+    motorOn = 0;
+  }
+}
+ 
 // create custom headers as necessary to clearly organize your sketch
 // e.g., Button functions, DC Motor functions, Servo functions, etc.
