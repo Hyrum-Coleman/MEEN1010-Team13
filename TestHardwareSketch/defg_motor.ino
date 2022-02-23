@@ -95,5 +95,6 @@ void PrintBlackWhite(void)
       Serial.println("Over black");
     else
       Serial.println("Over White");
+
   }
 }
