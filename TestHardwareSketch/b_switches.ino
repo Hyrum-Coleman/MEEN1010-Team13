@@ -38,9 +38,9 @@ void TestSwitches(void)
     char printArray [1000];
     sprintf(printArray, "Left switch state : %d ... Right switch state %d\n", leftSwitchState, rightSwitchState);
     Serial.print(printArray);
-//    Serial.print("Left switch state: ");
-//    Serial.print(leftSwitchState);
-//    Serial.print(" ... Right switch state: ");
-//    Serial.println(rightSwitchState);
+    //    Serial.print("Left switch state: ");
+    //    Serial.print(leftSwitchState);
+    //    Serial.print(" ... Right switch state: ");
+    //    Serial.println(rightSwitchState);
   }
 }

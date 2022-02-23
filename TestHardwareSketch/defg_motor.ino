@@ -18,7 +18,7 @@ void TestMotor(void)
 
     case 2:  //Right button
       motorRight = 1;
-      TurnMotorOn(); 
+      TurnMotorOn();
       break;
 
     case 5:  //Select button
@@ -33,6 +33,43 @@ void TestMotor(void)
       //Doing nothing
       break;
   }
-  
 
+  if (motorOn)
+  {
+    switch (userInput)
+    {
+      case 'd':
+        PrintLeftRight();
+        break;
+      case 'e':
+        //nothing yet :troll:
+        break;
+      case 'f':
+        //nothing yet :troll:
+        break;
+      case 'g':
+        //nothing yet :troll:
+        break;
+    }
+  }
+
+
+}
+
+void PrintLeftRight(void)
+{
+  timeSinceLastPrint = millis() - printTime;
+  if (timeSinceLastPrint > printDelay)
+  {
+    printTime = millis();
+    Serial.print("Launcher is moving ");
+    if (motorRight)
+    {
+      Serial.println("RIGHT");
+    }
+    else
+    {
+      Serial.println("LEFT");
+    }
+  }
 }

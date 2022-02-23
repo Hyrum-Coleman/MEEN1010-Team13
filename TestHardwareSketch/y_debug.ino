@@ -7,7 +7,7 @@ void DebugPrint(String debugText, int debugVal) {
   // *** Sample calling syntax: ***
   //  DebugPrint("buttonPressed: ", buttonPressed);
   //  DebugPrint("The value of black is ", black);
-  
+
   debugTimeSinceLastPrint = millis() - debugPrintTime;
 
   if (debugTimeSinceLastPrint > debugPrintDelay) {
@@ -15,7 +15,7 @@ void DebugPrint(String debugText, int debugVal) {
     Serial.print(debugText);
     Serial.println(debugVal);
   } // end if
-  
+
 } // end function
 
 
@@ -27,17 +27,17 @@ void DebugBlink(int debugBlinkDelay) {
   //  int debugLedHiLo = 0;
 
   // *** Sample calling syntax: ***
-  //  DebugBlink(200);    
-  //  DebugBlink(500);    
-  
+  //  DebugBlink(200);
+  //  DebugBlink(500);
+
   pinMode(debugLedPin, OUTPUT);
-  
-  debugTimeSinceLastBlink = millis()-debugBlinkTime;
-  
+
+  debugTimeSinceLastBlink = millis() - debugBlinkTime;
+
   if (debugTimeSinceLastBlink > debugBlinkDelay) {
     debugBlinkTime = millis();
-    debugLedHiLo = 1-debugLedHiLo;
+    debugLedHiLo = 1 - debugLedHiLo;
     digitalWrite(debugLedPin, debugLedHiLo);
   }  // end if
-  
+
 } // end function

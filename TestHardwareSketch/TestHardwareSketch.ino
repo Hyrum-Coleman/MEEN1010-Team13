@@ -39,7 +39,7 @@ char userInput ('z');
 bool newUserInput = 1; // 1 means user just entered a letter
 // 0 means no new input
 
-int printDelay = 2000;
+int printDelay = 200;
 
 // led test variables
 
@@ -103,7 +103,7 @@ void setup(void) {
   pinMode(rightSwitchPin, INPUT_PULLUP);
   pinMode(motorPowerPin, OUTPUT);
   pinMode(motorDirectionPin, OUTPUT);
-  
+
   // *** Take Initial Readings ***
 
   // *** Move Hardware to Desired Initial Positions ***
@@ -177,18 +177,18 @@ void loop(void) {
       //do something over and over
       TestButtons();
       break;
-        case 'd':
-    
-          //do something once
-          if (newUserInput == 1)
-          {
-            Serial.println("Press the left and right buttons to test the motor.");
-            newUserInput = 0; //should not delete under any circumstances
-    
-          }
-          //do something over and over
-          TestMotor();
-          break;
+    case 'd':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println("Press the left and right buttons to test the motor.");
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestMotor();
+      break;
     case 'z':
       //do something once
       if (newUserInput == 1)
@@ -219,7 +219,7 @@ void loop(void) {
 
 void TurnMotorOn(void)
 {
-  if(motorOn == 0)
+  if (motorOn == 0)
   {
     digitalWrite(motorDirectionPin, motorRight);
     analogWrite(motorPowerPin, motorPower);
@@ -229,12 +229,12 @@ void TurnMotorOn(void)
 
 void TurnMotorOff(void)
 {
-  if(motorOn == 1)
+  if (motorOn == 1)
   {
     analogWrite(motorPowerPin, 0);
     motorOn = 0;
   }
 }
- 
+
 // create custom headers as necessary to clearly organize your sketch
 // e.g., Button functions, DC Motor functions, Servo functions, etc.
