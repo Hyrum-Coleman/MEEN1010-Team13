@@ -68,7 +68,7 @@ Serial.println(counts);
 TurnMotorOff(200);
 CountStripes();
 counts = 43;
-Serial.print("Launcher at home -- counts set to ");
+Serial.print("Launcher at reloader -- counts set to ");
 Serial.println(counts);
 }
 }
