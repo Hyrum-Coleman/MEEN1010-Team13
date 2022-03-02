@@ -35,6 +35,7 @@ const int buttonPin = A7;
 const int motorPowerPin = 5;
 const int motorDirectionPin = 4;
 const int irSensorPin = A5;
+
 // *** Create Servo Objects ***
 
 // *** Declare & Initialize Program Variables ***
@@ -101,6 +102,17 @@ int irSensorValue = 0;
 
 bool black = 1;
 
+// count stripes variables
+
+unsigned long stripeChangeTime = 0;
+unsigned long timeSinceLastStripeChange = 0;
+int counts = 24;
+
+// test motor modification vars
+
+unsigned long incrementTime = 0;
+unsigned long timeSinceLastIncrement = 0;
+
 /********************
  ** Setup Function **
  ********************/
@@ -117,7 +129,7 @@ void setup(void) {
   pinMode(motorDirectionPin, OUTPUT);
 
   // *** Take Initial Readings ***
-
+  black = GetEncoderBoolean();
   // *** Move Hardware to Desired Initial Positions ***
 
 }// end setup() function
@@ -225,6 +237,20 @@ void loop(void) {
       //do something over and over
       TestMotor();
       break;
+      case 'g':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println("Press the left and right buttons to count stripes");
+        Serial.println("Press the up and down buttons to increment count");
+        Serial.println("Press the select button to set counts to 24");
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestMotor();
+      break;
     case 'z':
       //do something once
       if (newUserInput == 1)
@@ -267,7 +293,7 @@ void TurnMotorOff(int reverseTime)
 {
   if (motorOn == 1)
   {
-    analogWrite(motorPowerPin, 0); 
+    analogWrite(motorPowerPin, 0);
     delay(10);
     //think about this
     motorRight != motorRight;
@@ -298,5 +324,27 @@ bool GetEncoderBoolean(void)
   }
 }
 
+void CountStripes(void)
+{
+  int prevBlack = black;
+  black = GetEncoderBoolean();
+  timeSinceLastStripeChange = millis() - stripeChangeTime;
+  if (black != prevBlack)
+  {
+    stripeChangeTime = millis();
+    if (motorRight)
+    {
+      counts++;
+    }
+    else
+    {
+      counts--;
+    }
+    Serial.print("Count is: ");
+    Serial.print(counts);
+    Serial.print(" ... time since last stripe change is: ");
+    Serial.println(timeSinceLastStripeChange);
+  }
+}
 // create custom headers as necessary to clearly organize your sketch
 // e.g., Button functions, DC Motor functions, Servo functions, etc.

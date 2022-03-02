@@ -1,14 +1,26 @@
 void TestMotor(void)
 {
+  int prevButtonPressed = buttonPressed;
   ReadButtons();
   switch (buttonPressed)
   {
     case 3:  //Up button
-      //Doing nothing
-      break;
-
     case 1:  //Down button
-      //Doing nothing
+      timeSinceLastIncrement = millis() - incrementTime;
+      if ((prevButtonPressed != buttonPressed) || (timeSinceLastIncrement > 250))
+      {
+        incrementTime = millis();
+        if (buttonPressed == 3)
+        {
+          counts++;
+        }
+        else if(buttonPressed == 1)
+        {
+          counts--;
+        }
+        Serial.print("Counts is: ");
+        Serial.println(counts);
+      }
       break;
 
     case 4:  //Left button
@@ -22,11 +34,21 @@ void TestMotor(void)
       break;
 
     case 5:  //Select button
-      //Doing nothing
+      if(counts != 24)
+      {
+        counts = 24;
+        Serial.print("IDK dawg, counts is ");
+        Serial.print(counts);
+        Serial.println(" now (ツ)_/¯");
+      }
       break;
 
     case 0:  //No button
       TurnMotorOff(200);
+      if(userInput == 'g')
+      {
+        CountStripes();
+      }
       break;
 
     default:
@@ -48,7 +70,7 @@ void TestMotor(void)
         PrintBlackWhite();
         break;
       case 'g':
-        //nothing yet :troll:
+        CountStripes();
         break;
     }
   }
