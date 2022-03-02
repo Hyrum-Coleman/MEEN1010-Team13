@@ -263,10 +263,17 @@ void TurnMotorOn(void)
   }
 }
 
-void TurnMotorOff(void)
+void TurnMotorOff(int reverseTime)
 {
   if (motorOn == 1)
   {
+    analogWrite(motorPowerPin, 0); 
+    delay(10);
+    //think about this
+    motorRight != motorRight;
+    //motorRight != 0;
+    analogWrite(motorPowerPin, motorPower);
+    delay(reverseTime);
     analogWrite(motorPowerPin, 0);
     motorOn = 0;
   }

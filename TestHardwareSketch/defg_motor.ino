@@ -26,7 +26,7 @@ void TestMotor(void)
       break;
 
     case 0:  //No button
-      TurnMotorOff();
+      TurnMotorOff(200);
       break;
 
     default:
