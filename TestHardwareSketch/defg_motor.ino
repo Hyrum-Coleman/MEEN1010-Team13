@@ -44,7 +44,7 @@ void TestMotor(void)
       break;
 
     case 0:  //No button
-      TurnMotorOff(200);
+      TurnMotorOff(10);
       if (userInput == 'g')
       {
         CountStripes();

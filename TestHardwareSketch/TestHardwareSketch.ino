@@ -316,7 +316,8 @@ void TurnMotorOff(int reverseTime)
     analogWrite(motorPowerPin, 0);
     delay(10);
     //think about this
-    motorRight != motorRight;
+    
+    digitalWrite(motorDirectionPin, !motorRight);
     //motorRight != 0;
     analogWrite(motorPowerPin, motorPower);
     delay(reverseTime);

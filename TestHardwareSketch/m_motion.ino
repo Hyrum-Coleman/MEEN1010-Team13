@@ -45,7 +45,7 @@ void Moving(void)
   //Stop at target
   if (counts == desiredPosition)
   {
-    TurnMotorOff(200);
+    TurnMotorOff(10);
     CountStripes();
     Serial.print("Launcher at stripe ");
     Serial.println(counts);
@@ -56,7 +56,7 @@ void Moving(void)
   //Stop at home (moving left, left switch tripped)
   if ((motorRight == 0) & (leftSwitchState == 1))
   {
-TurnMotorOff(200);
+TurnMotorOff(10);
 CountStripes();
 counts = 5;
 Serial.print("Launcher at home -- counts set to ");
@@ -65,7 +65,7 @@ Serial.println(counts);
   //Stop at reloader (moving right, right switch tripped)
     if ((motorRight == 1) & (rightSwitchState == 1))
   {
-TurnMotorOff(200);
+TurnMotorOff(10);
 CountStripes();
 counts = 43;
 Serial.print("Launcher at reloader -- counts set to ");
