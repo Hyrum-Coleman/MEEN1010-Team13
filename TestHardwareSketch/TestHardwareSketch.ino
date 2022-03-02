@@ -108,10 +108,15 @@ unsigned long stripeChangeTime = 0;
 unsigned long timeSinceLastStripeChange = 0;
 int counts = 24;
 
-// test motor modification vars
+// test motor modification variables
 
 unsigned long incrementTime = 0;
 unsigned long timeSinceLastIncrement = 0;
+
+// move launcher variables
+
+bool startMotion = 0;
+int desiredPosition = 24;
 
 /********************
  ** Setup Function **
@@ -237,7 +242,7 @@ void loop(void) {
       //do something over and over
       TestMotor();
       break;
-      case 'g':
+    case 'g':
 
       //do something once
       if (newUserInput == 1)
@@ -250,6 +255,21 @@ void loop(void) {
       }
       //do something over and over
       TestMotor();
+      break;
+    case 'h':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        startMotion = 0;
+        Serial.println("Press the left and right buttons to increment desired position");
+        Serial.println("Press the up and down buttons to increment counts");
+        Serial.println("Press the select button to send the launcher to the desired position");
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestMoveLauncher();
       break;
     case 'z':
       //do something once

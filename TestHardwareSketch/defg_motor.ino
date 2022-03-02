@@ -14,7 +14,7 @@ void TestMotor(void)
         {
           counts++;
         }
-        else if(buttonPressed == 1)
+        else if (buttonPressed == 1)
         {
           counts--;
         }
@@ -34,7 +34,7 @@ void TestMotor(void)
       break;
 
     case 5:  //Select button
-      if(counts != 24)
+      if (counts != 24)
       {
         counts = 24;
         Serial.print("IDK dawg, counts is ");
@@ -45,7 +45,7 @@ void TestMotor(void)
 
     case 0:  //No button
       TurnMotorOff(200);
-      if(userInput == 'g')
+      if (userInput == 'g')
       {
         CountStripes();
       }
