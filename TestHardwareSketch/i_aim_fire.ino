@@ -82,7 +82,7 @@ void TestAimFire(void)
       break;
     case 3: // delay, then turn the solenoid off
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if(timeSinceLastStateChange > solenoidActivationTime)
+      if (timeSinceLastStateChange > solenoidActivationTime)
       {
         // turn the solenoid off
         analogWrite(solenoidPowerPin, 0);
