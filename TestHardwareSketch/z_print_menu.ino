@@ -1,14 +1,14 @@
 void PrintMenu(void)
 {
-  Serial.println("a = test IR LED");
-  Serial.println("b = test switches");
-  Serial.println("c = test buttons");
-  Serial.println("d = test motor");
-  Serial.println("e = test motor and sensor");
-  Serial.println("f = test motor and encoder");
-  Serial.println("g = test count stripes");
-  Serial.println("h = test move launcher");
-  Serial.println("i = test aim fire");
-  Serial.println("z = print menu");
+  Serial.println(F("a = test IR LED"));
+  Serial.println(F("b = test switches"));
+  Serial.println(F("c = test buttons"));
+  Serial.println(F("d = test motor"));
+  Serial.println(F("e = test motor and sensor"));
+  Serial.println(F("f = test motor and encoder"));
+  Serial.println(F("g = test count stripes"));
+  Serial.println(F("h = test move launcher"));
+  Serial.println(F("i = test aim fire"));
+  Serial.println(F("z = print menu"));
   Serial.println();
 }

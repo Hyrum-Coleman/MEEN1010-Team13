@@ -8,7 +8,7 @@ void TestIRLED(void)
       digitalWrite(ledPin, HIGH);
       ledOn = 1;
       blinkTime = millis();
-      Serial.println("The LED is on!");
+      Serial.println(F("The LED is on!"));
     }
 
   }
@@ -19,7 +19,7 @@ void TestIRLED(void)
       digitalWrite(ledPin, LOW);
       ledOn = 0;
       blinkTime = millis();
-      Serial.println("The LED is off!");
+      Serial.println(F("The LED is off!"));
     }
   }
 }

@@ -69,31 +69,31 @@ void TestButtons(void)
     switch (buttonPressed)
     {
       case 3:
-        Serial.println("UP button is pressed");
+        Serial.println(F("UP button is pressed"));
         break;
 
       case 1:
-        Serial.println("DOWN button is pressed");
+        Serial.println(F("DOWN button is pressed"));
         break;
 
       case 4:
-        Serial.println("LEFT button is pressed");
+        Serial.println(F("LEFT button is pressed"));
         break;
 
       case 2:
-        Serial.println("RIGHT button is pressed");
+        Serial.println(F("RIGHT button is pressed"));
         break;
 
       case 5:
-        Serial.println("SELECT button ispressed");
+        Serial.println(F("SELECT button ispressed"));
         break;
 
       case 0:
-        Serial.println("NO buttons are pressed");
+        Serial.println(F("NO buttons are pressed"));
         break;
 
       default:
-        Serial.println("Something has gone terribly wrong");
+        Serial.println(F("Something has gone terribly wrong"));
         break;
     }
   }

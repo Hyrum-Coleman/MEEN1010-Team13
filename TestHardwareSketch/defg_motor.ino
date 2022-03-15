@@ -18,7 +18,7 @@ void TestMotor(void)
         {
           counts--;
         }
-        Serial.print("Counts is: ");
+        Serial.print(F("Counts is: "));
         Serial.println(counts);
       }
       break;
@@ -37,9 +37,9 @@ void TestMotor(void)
       if (counts != 24)
       {
         counts = 24;
-        Serial.print("IDK dawg, counts is ");
+        Serial.print(F("IDK dawg, counts is "));
         Serial.print(counts);
-        Serial.println(" now (ツ)_/¯");
+        Serial.println(F(" now (ツ)_/¯"));
       }
       break;
 
@@ -84,14 +84,14 @@ void PrintLeftRight(void)
   if (timeSinceLastPrint > printDelay)
   {
     printTime = millis();
-    Serial.print("Launcher is moving ");
+    Serial.print(F("Launcher is moving "));
     if (motorRight)
     {
-      Serial.println("RIGHT");
+      Serial.println(F("RIGHT"));
     }
     else
     {
-      Serial.println("LEFT");
+      Serial.println(F("LEFT"));
     }
   }
 }
@@ -102,7 +102,7 @@ void PrintSensorValue(void)
   if (timeSinceLastPrint > 50)
   {
     printTime = millis();
-    Serial.print("The sensor value is ");
+    Serial.print(F("The sensor value is "));
     Serial.println(irSensorValue);
   }
 }
@@ -114,11 +114,11 @@ void PrintBlackWhite(void)
   {
     if (black == 1)
     {
-      Serial.println("Over black");
+      Serial.println(F("Over black"));
     }
     else
     {
-      Serial.println("Over white");
+      Serial.println(F("Over white"));
     }
 
   }

@@ -29,7 +29,7 @@ void TestAimFire(void)
         incrementTime = millis();
         desiredServoAngle = desiredServoAngle + servoAngleIncrement;
         desiredServoAngle = constrain(desiredServoAngle, 0, 180);
-        Serial.print("The desired servo angle is: ");
+        Serial.print(F("The desired servo angle is: "));
         Serial.println(desiredServoAngle);
       }
       break;

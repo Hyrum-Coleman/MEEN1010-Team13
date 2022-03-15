@@ -47,7 +47,7 @@ void Moving(void)
   {
     TurnMotorOff(10);
     CountStripes();
-    Serial.print("Launcher at stripe ");
+    Serial.print(F("Launcher at stripe "));
     Serial.println(counts);
   }
   //Read switches
@@ -59,7 +59,7 @@ void Moving(void)
     TurnMotorOff(10);
     CountStripes();
     counts = 5;
-    Serial.print("Launcher at home -- counts set to ");
+    Serial.print(F("Launcher at home -- counts set to "));
     Serial.println(counts);
   }
   //Stop at reloader (moving right, right switch tripped)
@@ -68,7 +68,7 @@ void Moving(void)
     TurnMotorOff(10);
     CountStripes();
     counts = 43;
-    Serial.print("Launcher at reloader -- counts set to ");
+    Serial.print(F("Launcher at reloader -- counts set to "));
     Serial.println(counts);
   }
 }

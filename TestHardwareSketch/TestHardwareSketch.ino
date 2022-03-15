@@ -23,6 +23,8 @@
 /****************************
  ** #defines and #includes **
  ****************************/
+#include <Servo.h>
+
 
 /***********************
  ** Global Variables ***
@@ -35,9 +37,9 @@ const int buttonPin = A7;
 const int motorPowerPin = 5;
 const int motorDirectionPin = 4;
 const int irSensorPin = A5;
-
+const int launcherServoPin = 9;
 // *** Create Servo Objects ***
-
+Servo launcherServo;
 // *** Declare & Initialize Program Variables ***
 
 char userInput ('z');
@@ -137,6 +139,7 @@ void setup(void) {
   pinMode(rightSwitchPin, INPUT_PULLUP);
   pinMode(motorPowerPin, OUTPUT);
   pinMode(motorDirectionPin, OUTPUT);
+  launcherServo.attach(launcherServoPin);
 
   // *** Take Initial Readings ***
   black = GetEncoderBoolean();
@@ -156,7 +159,7 @@ void loop(void) {
   {
     userInput = Serial.read();
     Serial.read();
-    Serial.print("User entered ");
+    Serial.print(F("User entered "));
     Serial.println(userInput);
     Serial.println();
     newUserInput = 1;
@@ -180,7 +183,7 @@ void loop(void) {
     case 'a':
       if (newUserInput == 1)
       {
-        Serial.println("Test a: Check that IR LED is blinking");
+        Serial.println(F("Test a: Check that IR LED is blinking"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -191,7 +194,7 @@ void loop(void) {
     case 'b':
       if (newUserInput == 1)
       {
-        Serial.println("Test b: Press the switches to test");
+        Serial.println(F("Test b: Press the switches to test"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -204,7 +207,7 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Test c: Press the buttons to test");
+        Serial.println(F("Test c: Press the buttons to test"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -216,7 +219,7 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Press the left and right buttons to test the motor");
+        Serial.println(F("Press the left and right buttons to test the motor"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -228,7 +231,7 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Press the left and right buttons to test the motor and sensor");
+        Serial.println(F("Press the left and right buttons to test the motor and sensor"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -240,7 +243,7 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Press the left and right buttons to test the motor and encoder");
+        Serial.println(F("Press the left and right buttons to test the motor and encoder"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -252,9 +255,9 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Press the left and right buttons to count stripes");
-        Serial.println("Press the up and down buttons to increment count");
-        Serial.println("Press the select button to set counts to 24");
+        Serial.println(F("Press the left and right buttons to count stripes"));
+        Serial.println(F("Press the up and down buttons to increment count"));
+        Serial.println(F("Press the select button to set counts to 24"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -267,9 +270,9 @@ void loop(void) {
       if (newUserInput == 1)
       {
         startMotion = 0;
-        Serial.println("Press the left and right buttons to increment desired position");
-        Serial.println("Press the up and down buttons to increment counts");
-        Serial.println("Press the select button to send the launcher to the desired position");
+        Serial.println(F("Press the left and right buttons to increment desired position"));
+        Serial.println(F("Press the up and down buttons to increment counts"));
+        Serial.println(F("Press the select button to send the launcher to the desired position"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -281,8 +284,8 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Press the up/down/left/right buttons to increment desiredServoAngle");
-        Serial.println("Press the select button to command the servo to fire the solenoid!");
+        Serial.println(F("Press the up/down/left/right buttons to increment desiredServoAngle"));
+        Serial.println(F("Press the select button to command the servo to fire the solenoid!"));
         newUserInput = 0; //should not delete under any circumstances
 
       }
@@ -302,8 +305,8 @@ void loop(void) {
       //do something once
       if (newUserInput == 1)
       {
-        Serial.println("Waiting for a valid user input");
-        Serial.println("Enter z to print menu");
+        Serial.println(F("Waiting for a valid user input"));
+        Serial.println(F("Enter z to print menu"));
         newUserInput = 0;
       }
       break;
@@ -379,9 +382,9 @@ void CountStripes(void)
     {
       counts--;
     }
-    Serial.print("Count is: ");
+    Serial.print(F("Count is: "));
     Serial.print(counts);
-    Serial.print(" ... time since last stripe change is: ");
+    Serial.print(F(" ... time since last stripe change is: "));
     Serial.println(timeSinceLastStripeChange);
   }
 }

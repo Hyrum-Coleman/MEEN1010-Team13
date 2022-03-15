@@ -18,7 +18,7 @@ void TestMoveLauncher(void)
         {
           counts--;
         }
-        Serial.print("Counts is: ");
+        Serial.print(F("Counts is: "));
         Serial.println(counts);
       }
       break;
