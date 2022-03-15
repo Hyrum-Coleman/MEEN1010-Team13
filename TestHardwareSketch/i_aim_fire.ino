@@ -63,15 +63,33 @@ void TestAimFire(void)
         Serial.print(F("Launcher servo commanded to "));
         Serial.println(desiredServoAngle);
         //change the state, update the time
-        state = 0;
+        state = 2;
         stateChangeTime = millis();
       }
       break;
     case 2: // delay, then turn the solenoid on
-      //nothing yet
+      timeSinceLastStateChange = millis() - stateChangeTime;
+      if (timeSinceLastStateChange > 1000)
+      {
+        // turn the solenoid on
+        digitalWrite(solenoidDirectionPin, HIGH);
+        analogWrite(solenoidPowerPin, solenoidPower);
+        Serial.println("Firing Solenoid! Bombs away boys!");
+        // change the state, update the time
+        state = 3;
+        stateChangeTime = millis();
+      }
       break;
     case 3: // delay, then turn the solenoid off
-      //nothing yet
+      timeSinceLastStateChange = millis() - stateChangeTime;
+      if(timeSinceLastStateChange > solenoidActivationTime)
+      {
+        // turn the solenoid off
+        analogWrite(solenoidPowerPin, 0);
+        Serial.println("All the bombs have been dropped! Fire Ceased!");
+        // change the state
+        state = 0;
+      }
       break;
   }
 }

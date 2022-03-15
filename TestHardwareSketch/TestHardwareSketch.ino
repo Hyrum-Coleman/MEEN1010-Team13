@@ -18,6 +18,8 @@
               04 digital          Motor Direction
               05 digital          Motor Power
               A5 analog           IR Sensor
+              06 digital          Solenoid Power
+              07 digital          Solenoid Direction
 *******************************************************************/
 
 /****************************
@@ -38,6 +40,8 @@ const int motorPowerPin = 5;
 const int motorDirectionPin = 4;
 const int irSensorPin = A5;
 const int launcherServoPin = 9;
+const int solenoidPowerPin = 6;
+const int solenoidDirectionPin = 7;
 // *** Create Servo Objects ***
 Servo launcherServo;
 // *** Declare & Initialize Program Variables ***
@@ -120,17 +124,15 @@ unsigned long timeSinceLastIncrement = 0;
 bool startMotion = 0;
 int desiredPosition = 24;
 
-//Test Aim Fire - Part 1
+// test aim fire variables
 
 int desiredServoAngle = 90;
 int servoAngleIncrement = 5;
-
-//Test Aim Fire - Part 2
-
 int state = 0;
 unsigned long stateChangeTime = 0;
 unsigned long timeSinceLastStateChange = 0;
-
+int solenoidPower = 255;
+int solenoidActivationTime = 500;
 /********************
  ** Setup Function **
  ********************/
@@ -146,6 +148,9 @@ void setup(void) {
   pinMode(motorPowerPin, OUTPUT);
   pinMode(motorDirectionPin, OUTPUT);
   launcherServo.attach(launcherServoPin);
+  pinMode(solenoidDirectionPin, OUTPUT);
+  pinMode(solenoidPowerPin, OUTPUT);
+
 
   // *** Take Initial Readings ***
   black = GetEncoderBoolean();
