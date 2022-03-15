@@ -8,6 +8,7 @@ void PrintMenu(void)
   Serial.println("f = test motor and encoder");
   Serial.println("g = test count stripes");
   Serial.println("h = test move launcher");
+  Serial.println("i = test aim fire");
   Serial.println("z = print menu");
   Serial.println();
 }

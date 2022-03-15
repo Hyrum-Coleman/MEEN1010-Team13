@@ -118,6 +118,11 @@ unsigned long timeSinceLastIncrement = 0;
 bool startMotion = 0;
 int desiredPosition = 24;
 
+//Test Aim Fire - Part 1
+
+int desiredServoAngle = 90;
+int servoAngleIncrement = 5;
+
 /********************
  ** Setup Function **
  ********************/
@@ -270,6 +275,19 @@ void loop(void) {
       }
       //do something over and over
       TestMoveLauncher();
+      break;
+    case 'i':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println("Press the up/down/left/right buttons to increment desiredServoAngle");
+        Serial.println("Press the select button to command the servo to fire the solenoid!");
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestAimFire();
       break;
     case 'z':
       //do something once
