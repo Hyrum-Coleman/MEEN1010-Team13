@@ -125,6 +125,12 @@ int desiredPosition = 24;
 int desiredServoAngle = 90;
 int servoAngleIncrement = 5;
 
+//Test Aim Fire - Part 2
+
+int state = 0;
+unsigned long stateChangeTime = 0;
+unsigned long timeSinceLastStateChange = 0;
+
 /********************
  ** Setup Function **
  ********************/

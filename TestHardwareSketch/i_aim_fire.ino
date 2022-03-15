@@ -33,15 +33,45 @@ void TestAimFire(void)
         Serial.println(desiredServoAngle);
       }
       break;
-
     case 5:
-      //nothing yet
+      if (buttonPressed != prevButtonPressed)
+      {
+        if (state > 0)
+        {
+          Serial.println(F("Action is still in progress, wait a little longer please"));
+        }
+        else
+        {
+          state = 1;
+          stateChangeTime = millis();
+        }
+      }
       break;
-
     case 0:
       break;
-
     default:
+      break;
+  }
+  switch (state)
+  {
+    case 1: // delay, then comand the servo
+      timeSinceLastStateChange = millis() - stateChangeTime;
+      if (timeSinceLastStateChange > 1000)
+      {
+        //command the servo
+        launcherServo.write(desiredServoAngle);
+        Serial.print(F("Launcher servo commanded to "));
+        Serial.println(desiredServoAngle);
+        //change the state, update the time
+        state = 0;
+        stateChangeTime = millis();
+      }
+      break;
+    case 2: // delay, then turn the solenoid on
+      //nothing yet
+      break;
+    case 3: // delay, then turn the solenoid off
+      //nothing yet
       break;
   }
 }
