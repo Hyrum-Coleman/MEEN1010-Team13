@@ -42,8 +42,10 @@ const int irSensorPin = A5;
 const int launcherServoPin = 9;
 const int solenoidPowerPin = 6;
 const int solenoidDirectionPin = 7;
+const int reloaderServoPin = 10;
 // *** Create Servo Objects ***
 Servo launcherServo;
+Servo reloaderServo;
 // *** Declare & Initialize Program Variables ***
 
 char userInput ('z');
@@ -133,6 +135,13 @@ unsigned long stateChangeTime = 0;
 unsigned long timeSinceLastStateChange = 0;
 int solenoidPower = 255;
 int solenoidActivationTime = 500;
+
+// test reloader variables
+
+int holdAngle = 30;
+int dispenseAngle = 0;
+int dispenseDelay = 1000;
+
 /********************
  ** Setup Function **
  ********************/
@@ -150,12 +159,12 @@ void setup(void) {
   launcherServo.attach(launcherServoPin);
   pinMode(solenoidDirectionPin, OUTPUT);
   pinMode(solenoidPowerPin, OUTPUT);
-
+  reloaderServo.attach(reloaderServoPin);
 
   // *** Take Initial Readings ***
   black = GetEncoderBoolean();
   // *** Move Hardware to Desired Initial Positions ***
-
+  reloaderServo.write(holdAngle);
 }// end setup() function
 
 /*******************
@@ -302,6 +311,18 @@ void loop(void) {
       }
       //do something over and over
       TestAimFire();
+      break;
+    case 'j':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println(F("Press the select button to reload a ball"));
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestReloader();
       break;
     case 'z':
       //do something once
