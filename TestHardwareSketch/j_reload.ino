@@ -5,23 +5,23 @@ void TestReloader(void)
   switch (buttonPressed)
   {
     case 5: //select
-    if (prevButtonPressed != buttonPressed)
-    {
-      if (state > 0)
+      if (prevButtonPressed != buttonPressed)
       {
-        Serial.println(F("Stuff is already happening.....idiot"));
+        if (state > 0)
+        {
+          Serial.println(F("Stuff is already happening.....idiot"));
+        }
+        else
+        {
+          state = 1;
+        }
       }
-      else
-      {
-        state = 1;
-      }
-    }
-    break;
+      break;
   }
-  switch (state) 
+  switch (state)
   {
     case 1: //Command the reloader servo to the dispense angle
-    //command the servo
+      //command the servo
       reloaderServo.write(dispenseAngle);
       Serial.println(F("DISPENSING"));
       // change the state, update the time
@@ -30,7 +30,7 @@ void TestReloader(void)
       break;
     case 2: // Delay, the command the reloader servo to the hold angle
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if (timeSinceLastStateChange > dispenseDelay) 
+      if (timeSinceLastStateChange > dispenseDelay)
       {
         // command the servo
         reloaderServo.write(holdAngle);

@@ -2,7 +2,7 @@
   Author Names: Hyrum Coleman, Will Connors
   Lab section: 003
   Team number: 13
-  Date: 2/23/22
+  Date:
   Sketch Description:
 
   Button Usage: Up/Down    -
@@ -20,6 +20,8 @@
               A5 analog           IR Sensor
               06 digital          Solenoid Power
               07 digital          Solenoid Direction
+              09 digital          Launcher Servo
+              10 digital          Reloader Servo
 *******************************************************************/
 
 /****************************
@@ -141,6 +143,12 @@ int solenoidActivationTime = 500;
 int holdAngle = 30;
 int dispenseAngle = 0;
 int dispenseDelay = 1000;
+
+// demo 1 variables
+
+int target = 0;
+int headed = 0;
+int driveTo[] = {19, 35, 33, 31, 32, 34};
 
 /********************
  ** Setup Function **
@@ -312,7 +320,22 @@ void loop(void) {
       //do something over and over
       TestAimFire();
       break;
-    case 'j':
+          case 'j':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        startMotion = 0;
+        Serial.println(F("Press the left and right buttons to increment headed"));
+        Serial.println(F("Press the up and down buttons to increment target"));
+        Serial.println(F("Press the select button to start demo 1"));
+        newUserInput = 0; //should not delete under any circumstances
+        startMotion = 1;
+      }
+      //do something over and over
+      IncrementAndStart();
+      break;
+    case 'm': // HOLY MOLY ASK ALEX ABOUT THIS, THIS USED TO BE 'j' AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
 
       //do something once
       if (newUserInput == 1)
