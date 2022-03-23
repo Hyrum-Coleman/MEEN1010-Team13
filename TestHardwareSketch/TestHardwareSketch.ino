@@ -342,7 +342,7 @@ void loop(void) {
         Serial.println(F("Press the up and down buttons to increment target"));
         Serial.println(F("Press the select button to start demo 1"));
         newUserInput = 0; //should not delete under any circumstances
-        startMotion = 1;
+        startMotion = 0;
       }
       //do something over and over
       Demo1();

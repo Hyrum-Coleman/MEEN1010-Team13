@@ -47,6 +47,9 @@ void Demo1(void)
       startMotion = 1;
       state = 1;
       break;
+    case 0:
+      MoveLauncher();
+      break;
 
   }
 }
