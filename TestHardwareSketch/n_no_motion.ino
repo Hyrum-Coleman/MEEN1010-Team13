@@ -46,7 +46,7 @@ void AtReloader(void)
       break;
     case 3: // delay, then set motion variables
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if(timeSinceLastStateChange > 1000)
+      if (timeSinceLastStateChange > 1000)
       {
         // set motion variables
         Serial.println(F("BALL RELOADED - setting motion variables"));
@@ -54,6 +54,6 @@ void AtReloader(void)
         // change the state
         state = 1;
       }
-
+      break;
   }
 }
