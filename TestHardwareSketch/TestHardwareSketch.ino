@@ -140,8 +140,8 @@ int solenoidActivationTime = 500;
 
 // test reloader variables
 
-int holdAngle = 30;
-int dispenseAngle = 70;
+int holdAngle = 56;
+int dispenseAngle = 30;
 int dispenseDelay = 1000;
 
 // demo 1 variables
@@ -344,6 +344,9 @@ void loop(void) {
         Serial.println(F("Press the select button to start demo 1"));
         newUserInput = 0; //should not delete under any circumstances
         startMotion = 0;
+        state = 0;
+        headed = 0;
+        target = 0;
       }
       //do something over and over
       Demo1();
