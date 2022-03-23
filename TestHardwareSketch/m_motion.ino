@@ -21,17 +21,20 @@ void MoveLauncher(void)
 void PreparingToMove(void)
 {
   // set desiredPosition
-  switch (headed)
+  if (userInput = 'k')
   {
-    case 0:
-      desiredPosition = -50;
-      break;
-    case 1:
-      desiredPosition = driveTo[target];
-      break;
-    case 2:
-      desiredPosition = 100;
-      break;
+    switch (headed)
+    {
+      case 0:
+        desiredPosition = -50;
+        break;
+      case 1:
+        desiredPosition = driveTo[target];
+        break;
+      case 2:
+        desiredPosition = 100;
+        break;
+    }
   }
   // set motorRight
   if (desiredPosition > counts)

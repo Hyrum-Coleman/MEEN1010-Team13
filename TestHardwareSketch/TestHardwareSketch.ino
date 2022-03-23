@@ -320,7 +320,19 @@ void loop(void) {
       //do something over and over
       TestAimFire();
       break;
-          case 'j':
+    case 'j':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println(F("Press the select button to reload a ball"));
+        newUserInput = 0; //should not delete under any circumstances
+
+      }
+      //do something over and over
+      TestReloader();
+      break;
+    case 'k':
 
       //do something once
       if (newUserInput == 1)
@@ -333,19 +345,7 @@ void loop(void) {
         startMotion = 1;
       }
       //do something over and over
-      IncrementAndStart();
-      break;
-    case 'm': // HOLY MOLY ASK ALEX ABOUT THIS, THIS USED TO BE 'j' AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH
-
-      //do something once
-      if (newUserInput == 1)
-      {
-        Serial.println(F("Press the select button to reload a ball"));
-        newUserInput = 0; //should not delete under any circumstances
-
-      }
-      //do something over and over
-      TestReloader();
+      Demo1();
       break;
     case 'z':
       //do something once

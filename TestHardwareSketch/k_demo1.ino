@@ -1,4 +1,4 @@
-void IncrementAndStart(void)
+void Demo1(void)
 {
   int prevButtonPressed = buttonPressed;
   ReadButtons();
@@ -19,7 +19,7 @@ void IncrementAndStart(void)
           target--;
         }
         target = constrain(target, 0, 5);
-        Serial.print(F("CTarget is: "));
+        Serial.print(F("Target is: "));
         Serial.println(target);
       }
       break;
@@ -44,9 +44,8 @@ void IncrementAndStart(void)
       }
       break;
     case 5:
-      userInput = 'm';
-      newUserInput = 1;
-      state = 0;
+      startMotion = 1;
+      state = 1;
       break;
 
   }
