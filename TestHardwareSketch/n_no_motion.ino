@@ -49,8 +49,10 @@ void AtReloader(void)
       if (timeSinceLastStateChange > 1000)
       {
         // set motion variables
+        startMotion = 1;
+        headed = 1;
+        target++;
         Serial.println(F("BALL RELOADED - setting motion variables"));
-        userInput = 'x'; //TEMPORARY
         // change the state
         state = 1;
       }
