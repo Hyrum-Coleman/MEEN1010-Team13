@@ -149,6 +149,7 @@ int dispenseDelay = 1000;
 int target = 0;
 int headed = 0;
 int driveTo[] = {19, 35, 33, 31, 32, 34};
+int writeToServo[] = {140, 110, 130, 90, 120, 80};
 
 /********************
  ** Setup Function **
@@ -442,6 +443,16 @@ void CountStripes(void)
     Serial.print(F(" ... time since last stripe change is: "));
     Serial.println(timeSinceLastStripeChange);
   }
+}
+
+void TurnLEDOn(void)
+{
+      digitalWrite(ledPin, HIGH); 
+}
+
+void TurnLEDOff(void)
+{
+      digitalWrite(ledPin, LOW);
 }
 // create custom headers as necessary to clearly organize your sketch
 // e.g., Button functions, DC Motor functions, Servo functions, etc.

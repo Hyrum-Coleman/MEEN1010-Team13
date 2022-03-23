@@ -57,3 +57,35 @@ void AtReloader(void)
       break;
   }
 }
+
+void AtHome(void)
+{
+  switch (state)
+  {
+    case 1: // turn the LED on
+      // turn the LED on
+      TurnLEDOn();
+      Serial.println(F("The LED is on! Starting Timer"));
+      // change the state, update the time
+      state = 2;
+      stateChangeTime = millis();
+      break;
+    case 2: // delay, then turn the LED off
+      timeSinceLastStateChange = millis() - stateChangeTime;
+      if (timeSinceLastStateChange > dispenseDelay)
+      {
+        // turn the LED off
+        TurnLEDOff();
+        Serial.println(F("The LED is off! Triggering Timer"));
+        // change the state
+        state = 3;
+      }
+      break;
+    case 3: // set the motion variables
+      // set motion variables
+      Serial.println(F("Setting motion variables"));
+      userInput = 'x'; // temporary
+      // change the state
+      state = 1;
+  }
+}
