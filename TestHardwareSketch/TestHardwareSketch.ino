@@ -141,7 +141,7 @@ int solenoidActivationTime = 500;
 // test reloader variables
 
 int holdAngle = 30;
-int dispenseAngle = 0;
+int dispenseAngle = 70;
 int dispenseDelay = 1000;
 
 // demo 1 variables
