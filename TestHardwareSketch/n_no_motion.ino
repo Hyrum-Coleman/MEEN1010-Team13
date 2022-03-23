@@ -86,7 +86,17 @@ void AtHome(void)
     case 3: // set the motion variables
       // set motion variables
       Serial.println(F("Setting motion variables"));
-      userInput = 'x'; // temporary
+      if (target < 5)
+      {
+        startMotion = 1;
+        headed = 1;
+      }
+      else
+      {
+        target = 0;
+        Serial.println(F("All done :)"));
+        userInput = 'x';
+      }
       // change the state
       state = 1;
   }

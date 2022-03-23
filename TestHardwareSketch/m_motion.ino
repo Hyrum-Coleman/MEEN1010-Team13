@@ -13,7 +13,7 @@ void MoveLauncher(void)
     }
     else
     {
-      
+
       NotMoving();
     }
   }
@@ -22,12 +22,25 @@ void MoveLauncher(void)
 void PreparingToMove(void)
 {
   // set desiredPosition
-  if (userInput = 'k')
+  if (userInput == 'k')
   {
     switch (headed)
     {
       case 0:
-        desiredPosition = -50;
+        leftSwitchState = digitalRead(leftSwitchPin);
+        if (leftSwitchState == 1)
+        {
+          Serial.println(F("Already home honey!"));
+          counts = 5;
+          desiredPosition = 5;
+          startMotion = 0;
+          headed = 1;
+        }
+        else
+        {
+          Serial.println(F("I'll be home in a jiffy"));
+          desiredPosition = -50;
+        }
         break;
       case 1:
         desiredPosition = driveTo[target];

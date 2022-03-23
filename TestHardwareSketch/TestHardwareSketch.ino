@@ -364,6 +364,14 @@ void loop(void) {
         Serial.println(F("Waiting for a valid user input"));
         Serial.println(F("Enter z to print menu"));
         newUserInput = 0;
+        if (motorOn == 1)
+        {
+          TurnMotorOff(10);
+          Serial.println(F("ABORTING MOTION!"));
+          startMotion = 0;
+          headed = 0;
+          target = 0;
+        }
       }
       break;
 
@@ -447,12 +455,12 @@ void CountStripes(void)
 
 void TurnLEDOn(void)
 {
-      digitalWrite(ledPin, HIGH); 
+  digitalWrite(ledPin, HIGH);
 }
 
 void TurnLEDOff(void)
 {
-      digitalWrite(ledPin, LOW);
+  digitalWrite(ledPin, LOW);
 }
 // create custom headers as necessary to clearly organize your sketch
 // e.g., Button functions, DC Motor functions, Servo functions, etc.
