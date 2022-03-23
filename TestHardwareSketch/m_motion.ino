@@ -13,7 +13,8 @@ void MoveLauncher(void)
     }
     else
     {
-      //NotMoving();
+      
+      NotMoving();
     }
   }
 }

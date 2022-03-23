@@ -5,17 +5,17 @@ void NotMoving(void)
   // at home
   if (leftSwitchState == 1)
   {
-    //AtHome();
+    AtHome();
   }
   // at reloader
   else if (rightSwitchState == 1)
   {
-    //AtReloader();
+    AtReloader();
   }
   // at target
   else if (desiredPosition == counts)
   {
-    //AtTarget();
+    AtTarget();
   }
 
 }
@@ -64,7 +64,7 @@ void AtHome(void)
   {
     case 1: // turn the LED on
       // turn the LED on
-      TurnLEDOn();
+      TurnLEDOn(); // ask alex if this will be slower than just using digital write
       Serial.println(F("The LED is on! Starting Timer"));
       // change the state, update the time
       state = 2;
@@ -87,5 +87,74 @@ void AtHome(void)
       userInput = 'x'; // temporary
       // change the state
       state = 1;
+  }
+}
+
+void AtTarget(void)
+{
+  switch (state)
+  {
+    case 1: // command launcher servo to firing angle
+      // command the launcher servo
+      desiredServoAngle = writeToServo[target];
+      launcherServo.write(desiredServoAngle);
+      Serial.print(F("Commanding launcher servo to "));
+      Serial.print(desiredServoAngle);
+      Serial.print(F(" for target "));
+      Serial.println(target);
+      //change the state, update the time
+      state = 2;
+      stateChangeTime = millis();
+      break;
+    case 2: // delay, then turn the solenoid on
+      timeSinceLastStateChange = millis() - stateChangeTime;
+      if (timeSinceLastStateChange > 1000)
+      {
+        // turn the solenoid on
+        digitalWrite(solenoidDirectionPin, HIGH);
+        analogWrite(solenoidPowerPin, solenoidPower);
+        Serial.println("Firing Solenoid! Bombs away boys!");
+        // change the state, update the time
+        state = 3;
+        stateChangeTime = millis();
+      }
+      break;
+    case 3: // delay, then turn the solenoid off
+      timeSinceLastStateChange = millis() - stateChangeTime;
+      if (timeSinceLastStateChange > solenoidActivationTime)
+      {
+        // turn the solenoid off
+        analogWrite(solenoidPowerPin, 0);
+        Serial.println("All the bombs have been dropped! Fire Ceased!");
+        //change the state, update the time
+        state = 4;
+        stateChangeTime = millis();
+      }
+      break;
+    case 4: // delay, then command the launcher servo to the reload angle
+      timeSinceLastStateChange = millis() - stateChangeTime;
+      if (timeSinceLastStateChange > 2000)
+      {
+        // command the launcher servo
+        launcherServo.write(60);
+        // change the state
+        state = 5;
+      }
+      break;
+    case 5: // set the motion variables
+      // set motion variables
+      startMotion = 1;
+      if (target < 5)
+      {
+        headed = 2;
+      }
+      else
+      {
+        headed = 0;
+      }
+      Serial.println(F("Target actions complete - setting motion variables"));
+      // change the state
+      state = 1;
+      break;
   }
 }
