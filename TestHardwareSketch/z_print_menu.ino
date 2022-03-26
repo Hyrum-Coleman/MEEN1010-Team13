@@ -9,7 +9,7 @@ void PrintMenu(void)
   Serial.println(F("g = test count stripes"));
   Serial.println(F("h = test move launcher"));
   Serial.println(F("i = test aim fire"));
-  Serial.println(F("j = test reloader  BRUTE FORCE THE VARIABLES"));
+  Serial.println(F("j = test reloader"));
   Serial.println(F("k = demo 1"));
   Serial.println(F("z = print menu"));
   Serial.println();
