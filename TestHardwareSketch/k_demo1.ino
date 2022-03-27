@@ -4,8 +4,8 @@ void Demo1(void)
   ReadButtons();
   switch (buttonPressed)
   {
-    case 3:
-    case 1:
+    case cUpButtonPressed:
+    case cDownButtonPressed:
       timeSinceLastIncrement = millis() - incrementTime;
       if ((prevButtonPressed != buttonPressed) || (timeSinceLastIncrement > 250))
       {
@@ -24,8 +24,8 @@ void Demo1(void)
       }
       break;
 
-    case 4:
-    case 2:
+    case cLeftButtonPressed:
+    case cRightButtonPressed:
       timeSinceLastIncrement = millis() - incrementTime;
       if ((prevButtonPressed != buttonPressed) || (timeSinceLastIncrement > 250))
       {
@@ -43,11 +43,11 @@ void Demo1(void)
         Serial.println(headed);
       }
       break;
-    case 5:
+    case cSelectButtonPressed:
       startMotion = 1;
       state = 1;
       break;
-    case 0:
+    case cNoButtonPressed:
       MoveLauncher();
       break;
 

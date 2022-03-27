@@ -4,8 +4,8 @@ void TestMotor(void)
   ReadButtons();
   switch (buttonPressed)
   {
-    case 3:  //Up button
-    case 1:  //Down button
+    case cUpButtonPressed:  //Up button
+    case cDownButtonPressed:  //Down button
       timeSinceLastIncrement = millis() - incrementTime;
       if ((prevButtonPressed != buttonPressed) || (timeSinceLastIncrement > 250))
       {
@@ -23,17 +23,17 @@ void TestMotor(void)
       }
       break;
 
-    case 4:  //Left button
+    case cLeftButtonPressed:  //Left button
       motorRight = 0;
       TurnMotorOn();
       break;
 
-    case 2:  //Right button
+    case cRightButtonPressed:  //Right button
       motorRight = 1;
       TurnMotorOn();
       break;
 
-    case 5:  //Select button
+    case cSelectButtonPressed:  //Select button
       if (counts != 24)
       {
         counts = 24;
@@ -43,7 +43,7 @@ void TestMotor(void)
       }
       break;
 
-    case 0:  //No button
+    case cNoButtonPressed:  //No button
       TurnMotorOff(10);
       if (userInput == 'g')
       {

@@ -8,7 +8,6 @@ void ReadButtons(void)
 
   // Determine the button number that corresponds to the button value
 
-  // ASK ALEX IF NO CURLY BRACKETS IS OK FOR GRADING PURPOSES
   if (buttonVal < 5)
   {
     buttonNumber = 1;
@@ -68,27 +67,27 @@ void TestButtons(void)
     printTime = millis();
     switch (buttonPressed)
     {
-      case 3:
+      case cUpButtonPressed:
         Serial.println(F("UP button is pressed"));
         break;
 
-      case 1:
+      case cDownButtonPressed:
         Serial.println(F("DOWN button is pressed"));
         break;
 
-      case 4:
+      case cLeftButtonPressed:
         Serial.println(F("LEFT button is pressed"));
         break;
 
-      case 2:
+      case cRightButtonPressed:
         Serial.println(F("RIGHT button is pressed"));
         break;
 
-      case 5:
+      case cSelectButtonPressed:
         Serial.println(F("SELECT button ispressed"));
         break;
 
-      case 0:
+      case cNoButtonPressed:
         Serial.println(F("NO buttons are pressed"));
         break;
 

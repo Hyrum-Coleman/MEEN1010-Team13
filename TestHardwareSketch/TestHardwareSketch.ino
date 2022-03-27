@@ -151,6 +151,16 @@ int headed = 0;
 int driveTo[] = {19, 35, 33, 31, 32, 34};
 int writeToServo[] = {140, 110, 130, 90, 120, 80};
 
+enum buttonName
+{
+  cUpButtonPressed = 3,
+  cDownButtonPressed = 1,
+  cLeftButtonPressed = 4,
+  cRightButtonPressed = 2,
+  cSelectButtonPressed = 5,
+  cNoButtonPressed = 0,
+};
+
 /********************
  ** Setup Function **
  ********************/

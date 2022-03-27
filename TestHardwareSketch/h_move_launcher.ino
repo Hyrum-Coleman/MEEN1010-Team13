@@ -4,8 +4,8 @@ void TestMoveLauncher(void)
   ReadButtons();
   switch (buttonPressed)
   {
-    case 3:  //Up button
-    case 1:  //Down button
+    case cUpButtonPressed:  //Up button
+    case cDownButtonPressed:  //Down button
       timeSinceLastIncrement = millis() - incrementTime;
       if ((prevButtonPressed != buttonPressed) || (timeSinceLastIncrement > 250))
       {
@@ -23,8 +23,8 @@ void TestMoveLauncher(void)
       }
       break;
 
-    case 4:  //Left button
-    case 2:  //Right button
+    case cLeftButtonPressed:  //Left button
+    case cRightButtonPressed:  //Right button
       timeSinceLastIncrement = millis() - incrementTime;
       if ((prevButtonPressed != buttonPressed) || (timeSinceLastIncrement > 250))
       {
@@ -42,11 +42,11 @@ void TestMoveLauncher(void)
       }
       break;
 
-    case 5:  //Select button
+    case cSelectButtonPressed:  //Select button
       startMotion = 1;
       break;
 
-    case 0:  //No button
+    case cNoButtonPressed:  //No button
       MoveLauncher();
       break;
 

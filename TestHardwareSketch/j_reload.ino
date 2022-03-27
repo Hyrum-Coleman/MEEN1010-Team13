@@ -4,7 +4,7 @@ void TestReloader(void)
   ReadButtons();
   switch (buttonPressed)
   {
-    case 5: //select
+    case cSelectButtonPressed: //select
       if (prevButtonPressed != buttonPressed)
       {
         if (state > 0)

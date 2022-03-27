@@ -4,36 +4,27 @@ void TestAimFire(void)
   ReadButtons();
   switch (buttonPressed)
   {
-    case 3:
-    case 1:
-    case 4:
-    case 2:
-      switch (buttonPressed)
-      {
-        case 3:
-          servoAngleIncrement = 5;
-          break;
-        case 1:
-          servoAngleIncrement = -5;
-          break;
-        case 4:
-          servoAngleIncrement = -1;
-          break;
-        case 2:
-          servoAngleIncrement = 1;
-          break;
-      }
-      timeSinceLastIncrement = millis() - incrementTime;
-      if ((buttonPressed != prevButtonPressed) || timeSinceLastIncrement > 250)
-      {
-        incrementTime = millis();
-        desiredServoAngle = desiredServoAngle + servoAngleIncrement;
-        desiredServoAngle = constrain(desiredServoAngle, 0, 180);
-        Serial.print(F("The desired servo angle is: "));
-        Serial.println(desiredServoAngle);
-      }
+    case cUpButtonPressed:
+      servoAngleIncrement = 5;
+      ChangeDesiredServoAngle(servoAngleIncrement);
       break;
-    case 5:
+      
+    case cDownButtonPressed:
+      servoAngleIncrement = -5;
+      ChangeDesiredServoAngle(servoAngleIncrement);
+      break;
+      
+    case cLeftButtonPressed:
+      servoAngleIncrement = -1;
+      ChangeDesiredServoAngle(servoAngleIncrement);
+      break;
+      
+    case cRightButtonPressed:
+      servoAngleIncrement = 1;
+      ChangeDesiredServoAngle(servoAngleIncrement);
+      break;
+      
+    case cSelectButtonPressed:
       if (buttonPressed != prevButtonPressed)
       {
         if (state > 0)
@@ -47,7 +38,7 @@ void TestAimFire(void)
         }
       }
       break;
-    case 0:
+    case cNoButtonPressed:
       break;
     default:
       break;
@@ -91,5 +82,19 @@ void TestAimFire(void)
         state = 0;
       }
       break;
+  }
+}
+
+void ChangeDesiredServoAngle(int servoAngleIncrement)
+{
+  int prevButtonPressed = buttonPressed;
+  timeSinceLastIncrement = millis() - incrementTime;
+  if ((buttonPressed != prevButtonPressed) || timeSinceLastIncrement > 250)
+  {
+    incrementTime = millis();
+    desiredServoAngle = desiredServoAngle + servoAngleIncrement;
+    desiredServoAngle = constrain(desiredServoAngle, 0, 180);
+    Serial.print(F("The desired servo angle is: "));
+    Serial.println(desiredServoAngle);
   }
 }
