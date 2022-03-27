@@ -8,22 +8,22 @@ void TestAimFire(void)
       servoAngleIncrement = 5;
       ChangeDesiredServoAngle(servoAngleIncrement);
       break;
-      
+
     case cDownButtonPressed:
       servoAngleIncrement = -5;
       ChangeDesiredServoAngle(servoAngleIncrement);
       break;
-      
+
     case cLeftButtonPressed:
       servoAngleIncrement = -1;
       ChangeDesiredServoAngle(servoAngleIncrement);
       break;
-      
+
     case cRightButtonPressed:
       servoAngleIncrement = 1;
       ChangeDesiredServoAngle(servoAngleIncrement);
       break;
-      
+
     case cSelectButtonPressed:
       if (buttonPressed != prevButtonPressed)
       {
