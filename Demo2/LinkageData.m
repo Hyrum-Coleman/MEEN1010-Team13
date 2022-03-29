@@ -5,7 +5,7 @@ experThetaL = data(:, 2:end);
 aveThetaL = mean([experThetaL]')';
 
 if(nargout == 0)
-    plot(thetaS, aveThetaL, 'bo');
+    plot(thetaS, aveThetaL, 'rx');
     title('Cannon Fourbar Kinematics');
     xlabel('Servo Angle [deg]');
     ylabel('Launch Angle [deg]');

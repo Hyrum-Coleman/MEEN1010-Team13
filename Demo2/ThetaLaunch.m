@@ -10,7 +10,7 @@ theta4 = ThetaFour(L, theta2);
 thetaL = 180 - theta4 + thetaL0;
 
 if(nargout == 0)
-    plot(thetaS, thetaL);
+    plot(thetaS, thetaL, 'r');
     title('Cannon Fourbar Kinematics');
     xlabel('Servomotor Angle [deg]');
     ylabel('Launch Angle [deg]');

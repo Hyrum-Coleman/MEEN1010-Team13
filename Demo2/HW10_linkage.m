@@ -1,9 +1,8 @@
 %%%%%%%%%%%%%%%%%%%%%
-% Hyrum Coleman
-% u1365193
+% Hyrum Coleman, Will Connors
+% u1365193       u1351108
 % ME EN 1010 Lab Section #003
-% HW 9b
-% 03/31/22
+% 03/30/22
 %%%%%%%%%%%%%%%%%%%%%
 clear; clc; close all;
 
