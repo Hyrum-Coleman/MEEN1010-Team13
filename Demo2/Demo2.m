@@ -56,14 +56,22 @@ legend('experiment', 'theory');
 graphTxt = sprintf("The SSE is %.4f for an initial velocity of %.2f m/s", best_SSE, optimal_v0);
 text(25, .3, graphTxt);
 
+xTarget = [0.70,0.85,1.00,1.15];
+% xTarget = [0.75,0.90,1.05,1.20];
+
 %%
 % Linkage
 
 
 %%
 % Projectile
+% Ask alex if we should add clear, clc and close all
 
+thetaL = LaunchAngle(d, optimal_v0, xTarget);
 
+for i = 1:length(xTarget)
+fprintf("To hit a target at %.2f m the launch angle should be %.2f degrees\n", xTarget(i), thetaL(i));
+end
 %%
 % Targeting
 
