@@ -28,7 +28,6 @@ filename = 'Robot12_ProjectileData.xlsx';
 
 fprintf("The best v0 is %.4f\nThe best SSE is %.4f\n", optimal_v0, best_SSE);
 
-thetaL = 0:90;
 figure
 ProjectileData(filename);
 hold on
