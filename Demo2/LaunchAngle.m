@@ -1,6 +1,6 @@
 % Hyrum Coleman, u1365193, ME EN 1010, HW9a
 
-function [steepThetaL] = LaunchAngle2(d, v0, xTarget)
+function [steepThetaL] = LaunchAngle(d, v0, xTarget)
 
 
 for i = 1:length(xTarget)
