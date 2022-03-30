@@ -45,16 +45,16 @@ projectileFilename = 'Robot12_ProjectileData.xlsx';
 [exp_thetaL, exp_xLand] = ProjectileData(projectileFilename);
 
 % Finding the optimal SSE and v0
-[optimal_v0, best_SSE] = fminbnd(@CompareProjectileData, 0, 5, [], d, exp_thetaL, exp_xLand);
+[optimal_velCoeffs, best_SSE] = fminsearch(@CompareProjectileData, [3.2,0], [], d, exp_thetaL, exp_xLand);
 
 % Creating a plot for displaying the experimental vs theory data
 figure
 ProjectileData(projectileFilename);
 hold on
-LandingDistance(d, optimal_v0, exp_thetaL);
+LandingDistance(d, optimal_velCoeffs, exp_thetaL);
 legend('experiment', 'theory');
-graphTxt = sprintf("The SSE is %.4f for an initial velocity of %.2f m/s", best_SSE, optimal_v0);
-text(25, .3, graphTxt);
+graphTxt = sprintf("The SSE is %.4f for kappa of %.2f and lamda of %.4f\n", best_SSE, optimal_velCoeffs(1), optimal_velCoeffs(2));
+text(20, .3, graphTxt);
 
 xTarget = [0.70,0.85,1.00,1.15];
 % xTarget = [0.75,0.90,1.05,1.20];
@@ -67,7 +67,7 @@ xTarget = [0.70,0.85,1.00,1.15];
 % Projectile
 % Ask alex if we should add clear, clc and close all
 
-thetaL = LaunchAngle(d, optimal_v0, xTarget);
+thetaL = LaunchAngle(d, optimal_velCoeffs, xTarget);
 
 for i = 1:length(xTarget)
 fprintf("To hit a target at %.2f m the launch angle should be %.2f degrees\n", xTarget(i), thetaL(i));
