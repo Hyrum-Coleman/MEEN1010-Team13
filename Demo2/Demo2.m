@@ -12,7 +12,7 @@ clear; clc; close all;
 
 
 % Initializing Varialbes
-linkageFilename = 'Robot12_LinkageData.xlsx';
+linkageFilename = 'Robot18_LinkageData.xlsx';
 load L_vector.mat
 load H_vector.mat
 [thetaS_exper, thetaL_exper] = LinkageData(linkageFilename);
@@ -41,7 +41,7 @@ end
 load('d_vector.mat');
 
 % Extracting the projectile data from the robot 12 spreadsheet
-projectileFilename = 'Robot12_ProjectileData.xlsx';
+projectileFilename = 'Robot18_ProjectileData.xlsx';
 [exp_thetaL, exp_xLand] = ProjectileData(projectileFilename);
 
 % Finding the optimal SSE and v0
@@ -56,8 +56,8 @@ legend('experiment', 'theory');
 graphTxt = sprintf("The SSE is %.4f for kappa of %.2f and lamda of %.4f\n", best_SSE, optimal_velCoeffs(1), optimal_velCoeffs(2));
 text(20, .3, graphTxt);
 
-xTarget = [0.70,0.85,1.00,1.15];
-% xTarget = [0.75,0.90,1.05,1.20];
+%xTarget = [0.70,0.85,1.00,1.15];
+xTarget = [0.75,0.90,1.05,1.20];
 
 %%
 % Linkage
@@ -68,10 +68,17 @@ xTarget = [0.70,0.85,1.00,1.15];
 % Ask alex if we should add clear, clc and close all
 
 thetaL = LaunchAngle(d, optimal_velCoeffs, xTarget);
+thetaS = ThetaServo(H, thetaL, optimal_params);
 
 for i = 1:length(xTarget)
 fprintf("To hit a target at %.2f m the launch angle should be %.2f degrees\n", xTarget(i), thetaL(i));
 end
+
+for i = 1:length(xTarget)
+fprintf("To hit a target at %.2f m use a servo angle of %.2f degrees, to get a launch angle of %.2f degrees\n", xTarget(i), thetaS(i), thetaL(i));
+end
+
+
 %%
 % Targeting
 
