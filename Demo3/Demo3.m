@@ -26,8 +26,8 @@ hold on
 plot(centroidColVec, centroidRowVec, 'mo');
 drawnow
 
-stripeNum = (.2 * centroidRowVec) ./ 10;
-xTargetm = (650 + .2 * centroidColVec) ./ 1000;
+stripeNum = (.2 * centroidRowVec) ./ 10
+xTargetm = (650 + .2 * centroidColVec) ./ 1000
 
 %%
 
@@ -63,15 +63,17 @@ while(1)
         elseif strcmp(message, dataCheck) == 1
             %send data to arduino
             disp('sending data to romeo');
+            for target = 1:6
             % Try sending an integer value as a string to Romeo
-            out1 = sprintf('%d',stripeNum(1));
+            out1 = sprintf('%d',stripeNum(target));
             writeline(RomeoCOM,out1);
-            out2 = sprintf('%.3f', xTargetm(1));
+            out2 = sprintf('%.3f', xTargetm(target));
             writeline(RomeoCOM, out2);
             message = readline(RomeoCOM);
             message = erase(message,sprintf('\r'));
+            disp(message);
+            end
         end
-        disp(message)
     end
 end
 

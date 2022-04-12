@@ -1,14 +1,24 @@
 void GetDataFromMatlab(void)
 {
   Serial.println("ready for data");
-  String dataString1 = Serial.readStringUntil('\n');
-  String dataString2 = Serial.readStringUntil('\n');
-  int encoderStripeNum = dataString1.toInt();
-  double targetDistance = dataString2.toDouble();
-  Serial.print("Drive to stripe ");
-  Serial.print(encoderStripeNum);
-  Serial.print(" and aim for ");
-  Serial.print(targetDistance, 3);
-  Serial.println("m.");
+
+
+  for (target = 0; target < 6; target++)
+  {
+    String dataString1 = Serial.readStringUntil('\n');
+    String dataString2 = Serial.readStringUntil('\n');
+    int encoderStripeNum = dataString1.toInt();
+    float targetDistance = dataString2.toFloat();
+    driveTo[target] = encoderStripeNum;
+    xTargetVec[target] = targetDistance;
+    Serial.print("For target ");
+    Serial.print(target);
+    Serial.print(", drive to stripe ");
+    Serial.print(driveTo[target]);
+    Serial.print(" and aim for ");
+    Serial.print(xTargetVec[target], 3);
+    Serial.println("m.");
+  }
+  target = 0;
 
 }

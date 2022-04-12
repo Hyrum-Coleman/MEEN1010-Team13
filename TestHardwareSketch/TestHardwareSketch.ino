@@ -161,6 +161,10 @@ enum buttonName
   cNoButtonPressed = 0,
 };
 
+// demo 3 variables
+
+double xTargetVec[] = {.7, .8, .9, 1.0, 1.1, 1.2};
+
 /********************
  ** Setup Function **
  ********************/
