@@ -373,7 +373,8 @@ void loop(void) {
     Serial.println(F("Getting data from Matlab"));
       GetDataFromMatlab();
       userInput = 'x';
-
+      Serial.println("done");
+      break;
     default:
       //do something once
       if (newUserInput == 1)
