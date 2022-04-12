@@ -44,7 +44,7 @@ hold off
 
 
 %%
-
+figure
 imageArray = imread("S22_PP_A1.bmp");
 disp("Click on the peashooter to get color info!");
 peaRGB = ColorPicker(imageArray);
@@ -70,7 +70,7 @@ xTargetm = (650 + .2 * centroidColVec) ./ 1000
 %%
 
 % serial communication setup
-RomeoCOM = serialport('COM6',9600);
+RomeoCOM = serialport('COM5',9600);
 endCheck = "done";
 dataCheck = "ready for data";
 
