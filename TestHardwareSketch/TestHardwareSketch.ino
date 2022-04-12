@@ -369,6 +369,10 @@ void loop(void) {
         newUserInput = 0; //should not delete under any circumstances
       }
       break;
+    case 's': //get data from matlab
+    Serial.println(F("Getting data from Matlab"));
+      GetDataFromMatlab();
+      userInput = 'x';
 
     default:
       //do something once
