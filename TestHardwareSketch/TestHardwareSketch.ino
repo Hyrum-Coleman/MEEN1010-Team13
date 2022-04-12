@@ -164,6 +164,11 @@ enum buttonName
 // demo 3 variables
 
 double xTargetVec[] = {.7, .8, .9, 1.0, 1.1, 1.2};
+double alpha = 38.4;
+double beta = .015;
+double thetaL0 = 11.77;
+double k = 3.279;
+double lambda = -0.0022;
 
 /********************
  ** Setup Function **
@@ -365,6 +370,22 @@ void loop(void) {
       //do something over and over
       Demo1();
       break;
+          case 't':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        startMotion = 0;
+        Serial.println(F("Press the left and right buttons to increment headed"));
+        newUserInput = 0; //should not delete under any circumstances
+        GetDataFromMatlab();
+        ComputeStuff();
+        userInput = 'x';
+        Serial.println("done");
+      }
+      //do something over and over
+      Demo1();
+      break;
     case 'z':
       //do something once
       if (newUserInput == 1)
@@ -374,7 +395,7 @@ void loop(void) {
       }
       break;
     case 's': //get data from matlab
-    Serial.println(F("Getting data from Matlab"));
+      Serial.println(F("Getting data from Matlab"));
       GetDataFromMatlab();
       userInput = 'x';
       Serial.println("done");
