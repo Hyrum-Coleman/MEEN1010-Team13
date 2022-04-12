@@ -20,5 +20,32 @@ void GetDataFromMatlab(void)
     Serial.println("m.");
   }
   target = 0;
+  // get linkage parameters from matlab
+  String paramString; 
+  paramString = Serial.readStringUntil('\n');
+  alpha = paramString.toFloat();
+  paramString = Serial.readStringUntil('\n');
+  beta = paramString.toFloat();
+  paramString = Serial.readStringUntil('\n');
+  thetaL0 = paramString.toFloat();
+  Serial.print("alpha = ");
+  Serial.print(alpha, 3);
+  Serial.print("; beta = ");
+  Serial.print(beta, 3);
+  Serial.print("; thetaL0 = ");
+  Serial.println(thetaL0, 3);
+  // get velocity coefficients from matlab
+  String coeffString;
+  coeffString = Serial.readStringUntil('\n');
+  k = coeffString.toFloat();
+  coeffString = Serial.readStringUntil('\n');
+  lambda = coeffString.toFloat();
+
+ 
+  Serial.print("kappa = ");
+  Serial.print(k, 4);
+  Serial.print("; lambda = ");
+  Serial.println(lambda, 4);
+  
 
 }

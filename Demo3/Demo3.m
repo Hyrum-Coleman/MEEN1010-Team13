@@ -7,6 +7,44 @@
 clear, clc, close all
 %%
 
+load('d_vector.mat');
+load L_vector.mat;
+linkageFilename = 'Robot12_LinkageData.xlsx';
+projectileFilename = 'Robot12_ProjectileData.xlsx';
+
+[thetaS_exper, thetaL_exper] = LinkageData(linkageFilename);
+
+% Finding minimum value of params
+[optimal_params, paramsSSE] = fminsearch(@CompareLinkageData, [0, 0, 0], [], L, thetaS_exper, thetaL_exper);
+
+% Graphing the information
+figure
+LinkageData(linkageFilename);
+hold on
+ThetaLaunch(L, thetaS_exper, optimal_params);
+legend('experiment', 'theory', 'Location', 'southeast');
+graphTxt = sprintf("alpha = %.2f\nbeta = %.2f\nthetaL0 = %.2f\nSSE = %.4f", optimal_params(1), optimal_params(2), optimal_params(3), paramsSSE);
+text(20, 70, graphTxt);
+
+[exp_thetaL, exp_xLand] = ProjectileData(projectileFilename);
+
+% Finding the optimal SSE and v0
+[optimal_velCoeffs, best_SSE] = fminsearch(@CompareProjectileData, [3.2,0], [], d, exp_thetaL, exp_xLand);
+
+% Creating a plot for displaying the experimental vs theory data
+figure
+ProjectileData(projectileFilename);
+hold on
+LandingDistance(d, optimal_velCoeffs, exp_thetaL);
+legend('experiment', 'theory');
+graphTxt = sprintf("The SSE is %.4f for kappa of %.2f and lamda of %.4f\n", best_SSE, optimal_velCoeffs(1), optimal_velCoeffs(2));
+text(20, .3, graphTxt);
+hold off
+
+
+
+%%
+
 imageArray = imread("S22_PP_A1.bmp");
 disp("Click on the peashooter to get color info!");
 peaRGB = ColorPicker(imageArray);
@@ -63,6 +101,7 @@ while(1)
         elseif strcmp(message, dataCheck) == 1
             %send data to arduino
             disp('sending data to romeo');
+            % send target info to Romeo
             for target = 1:6
             % Try sending an integer value as a string to Romeo
             out1 = sprintf('%d',stripeNum(target));
@@ -73,6 +112,23 @@ while(1)
             message = erase(message,sprintf('\r'));
             disp(message);
             end
+            % send linkage parameters to Romeo
+            for i = 1:3
+                out3 = sprintf('%.3f', optimal_params(i));
+                writeline(RomeoCOM, out3);
+                
+            end
+            message = readline(RomeoCOM);
+                message = erase(message,sprintf('\r'));
+                disp(message);
+            % send velocity coefficients to Romeo
+            for i = 1:2
+                out4 = sprintf('%.4f', optimal_velCoeffs(i));
+                writeline(RomeoCOM, out4);
+            end
+            message = readline(RomeoCOM);
+                message = erase(message,sprintf('\r'));
+                disp(message);
         else
             disp(message);
             
