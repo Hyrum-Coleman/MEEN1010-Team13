@@ -21,7 +21,7 @@ void GetDataFromMatlab(void)
   }
   target = 0;
   // get linkage parameters from matlab
-  String paramString; 
+  String paramString;
   paramString = Serial.readStringUntil('\n');
   alpha = paramString.toFloat();
   paramString = Serial.readStringUntil('\n');
@@ -41,11 +41,11 @@ void GetDataFromMatlab(void)
   coeffString = Serial.readStringUntil('\n');
   lambda = coeffString.toFloat();
 
- 
+
   Serial.print("kappa = ");
   Serial.print(k, 4);
   Serial.print("; lambda = ");
   Serial.println(lambda, 4);
-  
+
 
 }

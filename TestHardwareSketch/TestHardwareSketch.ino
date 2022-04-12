@@ -370,7 +370,7 @@ void loop(void) {
       //do something over and over
       Demo1();
       break;
-          case 't':
+    case 't':
 
       //do something once
       if (newUserInput == 1)
@@ -382,6 +382,20 @@ void loop(void) {
         ComputeStuff();
         userInput = 'x';
         Serial.println("done");
+      }
+      //do something over and over
+      Demo1();
+      break;
+    case 'v':
+
+      //do something once
+      if (newUserInput == 1)
+      {
+        Serial.println(F("Running Demo 4/Competition code"));
+        newUserInput = 0; //should not delete under any circumstances
+        GetDataFromMatlab();
+        startMotion = 1;
+        state = 1;
       }
       //do something over and over
       Demo1();

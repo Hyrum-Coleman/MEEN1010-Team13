@@ -22,7 +22,7 @@ void MoveLauncher(void)
 void PreparingToMove(void)
 {
   // set desiredPosition
-  if (userInput == 'k')
+  if (userInput == 'v')
   {
     switch (headed)
     {

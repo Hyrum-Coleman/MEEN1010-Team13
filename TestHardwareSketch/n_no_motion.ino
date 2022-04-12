@@ -88,17 +88,28 @@ void AtHome(void)
       Serial.println(F("Setting motion variables"));
       if (target < 5)
       {
+        if ((target == 0) && (userInput == 'v'))
+        {
+          Serial.println("Calling ComputeStuff()");
+          ComputeStuff();
+        }
         startMotion = 1;
         headed = 1;
+        // change the state
+        state = 1;
       }
       else
       {
         target = 0;
+        // change the state
+        state = 0;
         Serial.println(F("All done :)"));
+        if (userInput == 'v')
+        {
+          Serial.println("done");
+        }
         userInput = 'x';
       }
-      // change the state
-      state = 1;
   }
 }
 

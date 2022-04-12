@@ -1,18 +1,18 @@
 void ComputeStuff(void)
 {
   Serial.println("Performing targeting calculations");
-   double d[] = {.0400, .1583, .0553};
-   double H[] = {.1301, .0960, .0880, .0465};
-   
-   TargetServoAngles(d,k, lambda, H, alpha, beta, thetaL0, xTargetVec);
-   for (int i = 0; i < 6; i++)
-{
-  Serial.print("To hit a target at ");
-  Serial.print(xTargetVec[i]);
-  Serial.print(" m, command the servo to ");
-  Serial.print(writeToServo[i]);
-  Serial.println(" deg");
-}
+  double d[] = {.0400, .1583, .0553};
+  double H[] = {.1301, .0960, .0880, .0465};
+
+  TargetServoAngles(d, k, lambda, H, alpha, beta, thetaL0, xTargetVec);
+  for (int i = 0; i < 6; i++)
+  {
+    Serial.print("To hit a target at ");
+    Serial.print(xTargetVec[i]);
+    Serial.print(" m, command the servo to ");
+    Serial.print(writeToServo[i]);
+    Serial.println(" deg");
+  }
 }
 
 double Deg2Rad(double angleDeg)
@@ -129,14 +129,14 @@ void TargetServoAngles(double d[], double k, double lambda, double H[], double a
 
     writeToServo[i] = int(round(localServoVec[i]));
 
-//    Serial.print("xTarget [m] = ");
-//    Serial.print(xTargetVec[i]);
-//    Serial.print(" --> thetaL [deg] = ");
-//    Serial.print(localLaunchVec[i]);
-//    Serial.print(" --> thetaS [deg] = ");
-//    Serial.print(localServoVec[i]);
-//    Serial.print(" --> Rounded thetaS [deg] = ");
-//    Serial.println(writeToServo[i]);
+    //    Serial.print("xTarget [m] = ");
+    //    Serial.print(xTargetVec[i]);
+    //    Serial.print(" --> thetaL [deg] = ");
+    //    Serial.print(localLaunchVec[i]);
+    //    Serial.print(" --> thetaS [deg] = ");
+    //    Serial.print(localServoVec[i]);
+    //    Serial.print(" --> Rounded thetaS [deg] = ");
+    //    Serial.println(writeToServo[i]);
 
   }
 }
