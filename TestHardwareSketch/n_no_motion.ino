@@ -159,7 +159,7 @@ void AtTarget(void)
       if (timeSinceLastStateChange > 2000)
       {
         // command the launcher servo
-        launcherServo.write(60);
+        launcherServo.write(50);
         // change the state
         state = 5;
       }

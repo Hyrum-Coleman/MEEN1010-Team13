@@ -9,8 +9,8 @@ clear, clc, close all
 
 load('d_vector.mat');
 load L_vector.mat;
-linkageFilename = 'Robot12_LinkageData.xlsx';
-projectileFilename = 'Robot12_ProjectileData.xlsx';
+linkageFilename = 'Robot18_LinkageData.xlsx';
+projectileFilename = 'Robot18_ProjectileData.xlsx';
 
 [thetaS_exper, thetaL_exper] = LinkageData(linkageFilename);
 
@@ -70,7 +70,7 @@ xTargetm = (650 + .2 * centroidColVec) ./ 1000
 %%
 
 % serial communication setup
-RomeoCOM = serialport('COM5',9600);
+RomeoCOM = serialport('COM7',9600);
 endCheck = "done";
 dataCheck = "ready for data";
 
