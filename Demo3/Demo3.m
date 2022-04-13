@@ -64,15 +64,16 @@ sortedCentroidRowVec = sort(centroidRowVec, 'descend');
 tempCentroidRowVec = sortedCentroidRowVec(end);
 sortedCentroidRowVec(end) = sortedCentroidRowVec(1);
 sortedCentroidRowVec(1) = tempCentroidRowVec;
+
 tempCentroidRowVec = sortedCentroidRowVec(end);
 sortedCentroidRowVec(end) = sortedCentroidRowVec(end-1);
 sortedCentroidRowVec(end-1) = tempCentroidRowVec;
 sortedCentroidRowVec;
 
-[~,idx] = ismember(sortedCentroidRowVec,centroidRowVec);
+[~,sortedCentroidIndex] = ismember(sortedCentroidRowVec,centroidRowVec);
 
 centroidColVec;
-sortedCentroidColVec = centroidColVec(idx);
+sortedCentroidColVec = centroidColVec(sortedCentroidIndex);
 
 
 figure
@@ -80,8 +81,9 @@ image(imageArray)
 hold on
 plot(centroidColVec, centroidRowVec, 'mo');
 drawnow
-
+% oldStripeNum = (.2 * centroidRowVec) ./ 10
 stripeNum = (.2 * sortedCentroidRowVec) ./ 10
+% oldxTargetm = (650 + .2 * centroidColVec) ./ 1000
 xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000
 
 %%
@@ -119,7 +121,7 @@ while(1)
             %send data to arduino
             disp('sending data to romeo');
             % send target info to Romeo
-            for target = 1:6
+            for target = 1:length(stripeNum)
             % Try sending an integer value as a string to Romeo
             out1 = sprintf('%d',stripeNum(target));
             writeline(RomeoCOM,out1);
