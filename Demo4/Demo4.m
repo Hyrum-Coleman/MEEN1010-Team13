@@ -45,7 +45,7 @@ hold off
 
 %%
 figure
-imageArray = imread("S22_PP_A1.bmp");
+imageArray = imread("S22_PP_B2.bmp");
 disp("Click on the peashooter to get color info!");
 peaRGB = ColorPicker(imageArray);
 Rtarget = 5 * peaRGB(3);
@@ -55,22 +55,43 @@ targetRGB = [Rtarget, Gtarget, Btarget];
 
 [centroidRowVec, centroidColVec, imageArray] = FindAllTargetCentroids(imageArray, targetRGB);
 
-centroidColVec
-centroidRowVec
+centroidRowVec;
+
+%sorting centroid row vec for optimal movement before sending to arduino
+
+%shoot about 2 stripes before to game
+
+sortedCentroidRowVec = sort(centroidRowVec, 'descend');
+tempCentroidRowVec = sortedCentroidRowVec(end);
+sortedCentroidRowVec(end) = sortedCentroidRowVec(1);
+sortedCentroidRowVec(1) = tempCentroidRowVec;
+
+tempCentroidRowVec = sortedCentroidRowVec(end);
+sortedCentroidRowVec(end) = sortedCentroidRowVec(end-1);
+sortedCentroidRowVec(end-1) = tempCentroidRowVec;
+sortedCentroidRowVec;
+
+[~,sortedCentroidIndex] = ismember(sortedCentroidRowVec,centroidRowVec);
+
+centroidColVec;
+sortedCentroidColVec = centroidColVec(sortedCentroidIndex);
+
 
 figure
 image(imageArray)
 hold on
 plot(centroidColVec, centroidRowVec, 'mo');
 drawnow
-
-stripeNum = (.2 * centroidRowVec) ./ 10
-xTargetm = (650 + .2 * centroidColVec) ./ 1000
+% oldStripeNum = (.2 * centroidRowVec) ./ 10
+stripeNum = (.2 * sortedCentroidRowVec) ./ 10
+% oldxTargetm = (650 + .2 * centroidColVec) ./ 1000
+xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000;
+xTargetm = xTargetm - .02
 
 %%
 
 % serial communication setup
-RomeoCOM = serialport('COM7',9600);
+RomeoCOM = serialport('/dev/tty.usbmodem1101',9600);
 endCheck = "done";
 dataCheck = "ready for data";
 
