@@ -55,8 +55,25 @@ targetRGB = [Rtarget, Gtarget, Btarget];
 
 [centroidRowVec, centroidColVec, imageArray] = FindAllTargetCentroids(imageArray, targetRGB);
 
-centroidColVec
-centroidRowVec
+
+centroidRowVec;
+
+%sorting centroid row vec for optimal movement before sending to arduino
+
+sortedCentroidRowVec = sort(centroidRowVec, 'descend');
+tempCentroidRowVec = sortedCentroidRowVec(end);
+sortedCentroidRowVec(end) = sortedCentroidRowVec(1);
+sortedCentroidRowVec(1) = tempCentroidRowVec;
+tempCentroidRowVec = sortedCentroidRowVec(end);
+sortedCentroidRowVec(end) = sortedCentroidRowVec(end-1);
+sortedCentroidRowVec(end-1) = tempCentroidRowVec;
+sortedCentroidRowVec;
+
+[~,idx] = ismember(sortedCentroidRowVec,centroidRowVec);
+
+centroidColVec;
+sortedCentroidColVec = centroidColVec(idx);
+
 
 figure
 image(imageArray)
@@ -64,8 +81,8 @@ hold on
 plot(centroidColVec, centroidRowVec, 'mo');
 drawnow
 
-stripeNum = (.2 * centroidRowVec) ./ 10
-xTargetm = (650 + .2 * centroidColVec) ./ 1000
+stripeNum = (.2 * sortedCentroidRowVec) ./ 10
+xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000
 
 %%
 
