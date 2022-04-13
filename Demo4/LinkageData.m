@@ -2,7 +2,7 @@ function [thetaS,aveThetaL] = LinkageData(filename)
 data = readmatrix(filename);
 thetaS = data(:, 1);
 experThetaL = data(:, 2:end);
-aveThetaL = mean([experThetaL]')';
+aveThetaL = mean(experThetaL, 2);
 
 if(nargout == 0)
     plot(thetaS, aveThetaL, 'rx');
