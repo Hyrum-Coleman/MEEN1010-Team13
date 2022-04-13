@@ -3,10 +3,10 @@ function [thetaL,aveXLand] = ProjectileData(filename)
 %   Detailed explanation goes here
 data = readmatrix(filename);
 thetaL = data(:, 1);
-xLand1 = data(:, 2);
-xLand2 = data(:, 3);
-xLand3 = data(:, 4);
-aveXLand = mean([xLand1, xLand2, xLand3]')';
+xLand1 = data(:, 2:end);
+% xLand2 = data(:, 3);
+% xLand3 = data(:, 4);
+aveXLand = mean(xLand1, 2);
 aveXLand = aveXLand ./ 100;
 
 if(nargout == 0)

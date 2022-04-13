@@ -10,7 +10,7 @@ clear, clc, close all
 load('d_vector.mat');
 load L_vector.mat;
 linkageFilename = 'Robot18_LinkageData.xlsx';
-projectileFilename = 'Robot18_ProjectileData.xlsx';
+projectileFilename = 'Robot18_ProjectileData2.xlsx';
 
 [thetaS_exper, thetaL_exper] = LinkageData(linkageFilename);
 
@@ -86,7 +86,7 @@ drawnow
 stripeNum = (.2 * sortedCentroidRowVec) ./ 10
 % oldxTargetm = (650 + .2 * centroidColVec) ./ 1000
 xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000;
-xTargetm = xTargetm - .02
+%xTargetm = xTargetm - .02
 
 %%
 
