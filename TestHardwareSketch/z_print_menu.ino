@@ -12,6 +12,8 @@ void PrintMenu(void)
   Serial.println(F("j = test reloader"));
   Serial.println(F("k = demo 1"));
   Serial.println(F("s = talk to matlab"));
+  Serial.println(F("t = compute stuff >:("));
+  Serial.println(F("v = VICTORY"));
   Serial.println(F("z = print menu"));
   Serial.println();
 }
