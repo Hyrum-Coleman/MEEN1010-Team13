@@ -91,7 +91,7 @@ xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000
 %%
 
 % serial communication setup
-RomeoCOM = serialport('/dev/tty.usbmodem1101',9600);
+RomeoCOM = serialport('COM7',9600);
 endCheck = "done";
 dataCheck = "ready for data";
 
