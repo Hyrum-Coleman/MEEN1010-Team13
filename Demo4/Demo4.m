@@ -85,7 +85,7 @@ drawnow
 % oldStripeNum = (.2 * centroidRowVec) ./ 10
 stripeNum = (.2 * sortedCentroidRowVec) ./ 10
 % oldxTargetm = (650 + .2 * centroidColVec) ./ 1000
-xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000;
+xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000
 %xTargetm = xTargetm - .02
 
 %%
