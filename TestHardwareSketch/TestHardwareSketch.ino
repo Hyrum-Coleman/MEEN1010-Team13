@@ -136,13 +136,14 @@ int state = 0;
 unsigned long stateChangeTime = 0;
 unsigned long timeSinceLastStateChange = 0;
 int solenoidPower = 255;
-int solenoidActivationTime = 500;
+int solenoidActivationTime = 200;
 
 // test reloader variables
 
 int holdAngle = 40;
-int dispenseAngle = 10;
+int dispenseAngle = 5;
 int dispenseDelay = 500;
+int reloadAngle = 50;
 
 // demo 1 variables
 
@@ -456,7 +457,7 @@ void TurnMotorOff(int reverseTime)
   if (motorOn == 1)
   {
     analogWrite(motorPowerPin, 0);
-    delay(10);
+    delay(reverseTime);
     //think about this
 
     digitalWrite(motorDirectionPin, !motorRight);

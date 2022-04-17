@@ -46,7 +46,7 @@ void AtReloader(void)
       break;
     case 3: // delay, then set motion variables
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if (timeSinceLastStateChange > 500)
+      if (timeSinceLastStateChange > 200)
       {
         // set motion variables
         startMotion = 1;
@@ -66,7 +66,8 @@ void AtHome(void)
   {
     case 1: // turn the LED on
       // turn the LED on
-      TurnLEDOn(); // ask alex if this will be slower than just using digital write
+      digitalWrite(ledPin, HIGH);
+      // TurnLEDOn(); // ask alex if this will be slower than just using digital write
       Serial.println(F("The LED is on! Starting Timer"));
       // change the state, update the time
       state = 2;
@@ -77,7 +78,8 @@ void AtHome(void)
       if (timeSinceLastStateChange > dispenseDelay)
       {
         // turn the LED off
-        TurnLEDOff();
+        digitalWrite(ledPin, LOW);
+        //TurnLEDOff();
         Serial.println(F("The LED is off! Triggering Timer"));
         // change the state
         state = 3;
@@ -131,7 +133,7 @@ void AtTarget(void)
       break;
     case 2: // delay, then turn the solenoid on
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if (timeSinceLastStateChange > 500)
+      if (timeSinceLastStateChange > 350)
       {
         // turn the solenoid on
         digitalWrite(solenoidDirectionPin, HIGH);
@@ -156,10 +158,10 @@ void AtTarget(void)
       break;
     case 4: // delay, then command the launcher servo to the reload angle
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if (timeSinceLastStateChange > 500)
+      if (timeSinceLastStateChange > 200)
       {
         // command the launcher servo
-        launcherServo.write(50);
+        launcherServo.write(reloadAngle); 
         // change the state
         state = 5;
       }
