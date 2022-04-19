@@ -137,6 +137,5 @@ void TargetServoAngles(double d[], double k, double lambda, double H[], double a
     //    Serial.print(localServoVec[i]);
     //    Serial.print(" --> Rounded thetaS [deg] = ");
     //    Serial.println(writeToServo[i]);
-
   }
 }
