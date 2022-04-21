@@ -9,10 +9,10 @@ clear, clc, close all
 
 load('d_vector.mat');
 load L_vector.mat;
-linkageFilename = 'Robot18_LinkageData.xlsx';
-projectileFilename = 'Robot18_ProjectileData2.xlsx';
-COMPort = 'COM7';
-imageFile = "S22_PP_B2.bmp";
+linkageFilename = 'Comp_Robot8_LinkageData.xlsx';
+projectileFilename = 'Comp_Robot8_ProjectileData.xlsx';
+COMPort = '/dev/tty.usbmodem101';
+imageFile = "S22_CP_A2.bmp";
 stripeNumScalar = 0;
 
 [thetaS_exper, thetaL_exper] = LinkageData(linkageFilename);
