@@ -11,6 +11,9 @@ load('d_vector.mat');
 load L_vector.mat;
 linkageFilename = 'Robot18_LinkageData.xlsx';
 projectileFilename = 'Robot18_ProjectileData2.xlsx';
+COMPort = 'COM7';
+imageFile = "S22_PP_B2.bmp";
+stripeNumScalar = 0;
 
 [thetaS_exper, thetaL_exper] = LinkageData(linkageFilename);
 
@@ -44,8 +47,9 @@ hold off
 
 
 %%
+
 figure
-imageArray = imread("S22_PP_B2.bmp");
+imageArray = imread(imageFile);
 disp("Click on the peashooter to get color info!");
 peaRGB = ColorPicker(imageArray);
 Rtarget = 5 * peaRGB(3);
@@ -58,8 +62,6 @@ targetRGB = [Rtarget, Gtarget, Btarget];
 centroidRowVec;
 
 %sorting centroid row vec for optimal movement before sending to arduino
-
-%shoot about 2 stripes before to game
 
 sortedCentroidRowVec = sort(centroidRowVec, 'descend');
 tempCentroidRowVec = sortedCentroidRowVec(end);
@@ -82,16 +84,13 @@ image(imageArray)
 hold on
 plot(centroidColVec, centroidRowVec, 'mo');
 drawnow
-% oldStripeNum = (.2 * centroidRowVec) ./ 10
-stripeNum = (.2 * sortedCentroidRowVec) ./ 10
-% oldxTargetm = (650 + .2 * centroidColVec) ./ 1000
+stripeNum = ((.2 * sortedCentroidRowVec) ./ 10) + stripeNumScalar
 xTargetm = (650 + .2 * sortedCentroidColVec) ./ 1000
-%xTargetm = xTargetm - .02
 
 %%
 
 % serial communication setup
-RomeoCOM = serialport('COM7',9600);
+RomeoCOM = serialport(COMPort,9600);
 endCheck = "done";
 dataCheck = "ready for data";
 
