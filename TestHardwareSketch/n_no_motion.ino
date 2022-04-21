@@ -46,7 +46,7 @@ void AtReloader(void)
       break;
     case 3: // delay, then set motion variables
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if (timeSinceLastStateChange > 1000)
+      if (timeSinceLastStateChange > motionVariableDelay)
       {
         // set motion variables
         startMotion = 1;
@@ -133,7 +133,7 @@ void AtTarget(void)
       break;
     case 2: // delay, then turn the solenoid on
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if (timeSinceLastStateChange > 1000)
+      if (timeSinceLastStateChange > solenoidActivationDelay)
       {
         // turn the solenoid on
         digitalWrite(solenoidDirectionPin, HIGH);
@@ -158,7 +158,7 @@ void AtTarget(void)
       break;
     case 4: // delay, then command the launcher servo to the reload angle
       timeSinceLastStateChange = millis() - stateChangeTime;
-      if (timeSinceLastStateChange > 2000)
+      if (timeSinceLastStateChange > reloadAngleDelay)
       {
         // command the launcher servo
         launcherServo.write(reloadAngle); 

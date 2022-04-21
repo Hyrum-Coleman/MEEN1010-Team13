@@ -136,15 +136,18 @@ int state = 0;
 unsigned long stateChangeTime = 0;
 unsigned long timeSinceLastStateChange = 0;
 int solenoidPower = 255;
-int solenoidActivationTime = 200;
+int solenoidActivationTime = 500;
 
 // test reloader variables
 
 int holdAngle = 40;
 int dispenseAngle = 5;
-int dispenseDelay = 1000;
 int reloadAngle = 50;
 
+int dispenseDelay = 1000;
+int reloadAngleDelay = 2000;
+int solenoidActivationDelay = 1000;
+int motionVariableDelay = 1000;
 // demo 1 variables
 
 int target = 0;
