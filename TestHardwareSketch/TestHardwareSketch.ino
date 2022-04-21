@@ -54,7 +54,7 @@ char userInput ('z');
 bool newUserInput = 1; // 1 means user just entered a letter
 // 0 means no new input
 
-int printDelay = 100;
+int printDelay = 200;
 
 // led test variables
 
@@ -142,7 +142,7 @@ int solenoidActivationTime = 200;
 
 int holdAngle = 40;
 int dispenseAngle = 5;
-int dispenseDelay = 500;
+int dispenseDelay = 1000;
 int reloadAngle = 50;
 
 // demo 1 variables
