@@ -121,8 +121,8 @@ void TargetServoAngles(double d[], double k, double lambda, double H[], double a
   double localServoVec[6];
   for (int i = 0; i < 6; i++)
   {
-    Serial.print("Computing target ");
-    Serial.println(i);
+    // Serial.print("Computing target ");
+    // Serial.println(i);
 
     localLaunchVec[i] = LaunchAngle(d, k, lambda, xTargetVec[i]);
     localServoVec[i] = ThetaServo(H, localLaunchVec[i], alpha, beta, thetaL0);
